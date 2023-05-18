@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[45,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/NicosaurusRex99/Gadget-Lab/issues" #optional
+[[mods]] #mandatory
+modId="gadget_lab"
+version="${file.jarVersion}" #mandatory
+displayName="Gadget Lab" #mandatory
+updateJSONURL="https://raw.githubusercontent.com/NicosaurusRex99/Nicusha-mod-assets/main/gadget_lab_update.json" #optional
+displayURL="https://legacy.curseforge.com/minecraft/mc-mods/gadget-lab" #optional
+logoFile="gadget_lab.png" #optional
+credits="" #optional
+authors="Nicusha" #optional
+description='''
+Gadget Lab is a fantastic mod that adds a variety of random items to assist you in various tasks within Minecraft. With a collection of 30 unique gadgets and tools, this mod enhances your gameplay by providing innovative solutions and conveniences. From farming aids and construction tools to exploration and mobility devices, Gadget Lab offers a range of specialized items to simplify and improve your Minecraft experience. Discover the perfect gadget to help you with your specific tasks and make your gameplay more efficient and enjoyable.
+'''
+[[dependencies.gadget_lab]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[45,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.gadget_lab]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.4,1.20)"
+    ordering="NONE"
+    side="BOTH"

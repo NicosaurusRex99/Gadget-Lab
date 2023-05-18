@@ -1,0 +1,110 @@
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+version = '1.0'
+group = 'nicusha.gadget_lab'
+archivesBaseName = 'gadget_lab'
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+minecraft {
+    mappings channel: 'official', version: '1.19.4'
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'gadget_lab'
+            mods {
+                gadget_lab {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'gadget_lab'
+            mods {
+                gadget_lab {
+                    source sourceSets.main
+                }
+            }
+        }
+        gameTestServer {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'gadget_lab'
+            mods {
+                gadget_lab {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'gadget_lab', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            mods {
+                gadget_lab {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+repositories {
+	maven { url = "https://minecraft.curseforge.com/api/maven/"}
+    maven { url = "https://dvs1.progwml6.com/files/maven/"}
+    maven { url = "https://modmaven.dev"}
+    maven { url = "https://www.cursemaven.com"}
+    maven { url 'https://maven.blamejared.com'}
+    maven { url "https://maven.shedaniel.me" }
+    maven { url = uri("https://maven.architectury.dev/") }
+    maven { url = uri("https://maven.blakesmods.com") }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.19.4-45.0.64'
+	compileOnly fg.deobf("mezz.jei:jei-1.19.4-common-api:13.1.0.7") //Just Enough Items
+    compileOnly fg.deobf("mezz.jei:jei-1.19.4-forge-api:13.1.0.7") //Just Enough Items
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-common:13.1.0.7") //Just Enough Items
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19.4-forge:13.1.0.7") //Just Enough Items
+    compileOnly fg.deobf("curse.maven:just-enough-resources-jer-240630:4526641") //Just Enough Resources
+    runtimeOnly fg.deobf("curse.maven:just-enough-resources-jer-240630:4526641") //Just Enough Resources
+}
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "gadget_lab",
+                "Specification-Vendor"    : "Nicusha",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "gadget_labsareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+jar.finalizedBy('reobfJar')
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
