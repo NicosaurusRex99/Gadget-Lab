@@ -1,0 +1,29 @@
+Energy Transmitter block. Wirelessly power machines in a small radius at the cost of some power
+Growth Accelerator. Speeds up growth of crops in a 3x3x1 area (maybe add variants of this for more range?)
+Void Chest. Deletes excess items
+Block Breaker. Breaks blocks (can be pushed via piston)
+Launch Pad. Launches the player 16ish blocks in the air
+Relic pedestal. Pedestals found in altars that would have some from of item worth adventuring
+Entity Magnet Block. Would attract mobs and not let them run (toggled via redstone?)
+Cloud platform. You can place this block mid air allowing you to create platforms while flying (mostly a creative util but can be helpful with other mods)
+Ore extractor. Would mine ores directly below it at the cost of power
+Carbon compressor. Converts items with the block tag carbon into diamonds
+Displacement Pad. teleports entities to a predefined location
+Holographic Projector. Projects an entity (you would use the mob id to define it) and renders it above the projector
+Soul Lantern. Projects light and soul particles
+Slime Siphon. if a slime is ontop of this block it would collect slimeballs over time
+Blaze blaster. a gun that shoots blaze powder
+Quicksand. you know. sand that you fall in
+Fishermans net. a block that gathers and stores stuff you can get from fishing.
+Sun Dial. when right clicked it tells time, just an aesthetic block
+
+Enigmatic Hold. Captures a mob, you can place it anywhere
+Gravity Boots. Jump higher, no fall damage
+Fortune Amulet. Gives fortune
+Harvesting gloves. Enhances crop yield
+Teleportation wand. Teleports 32 blocks in the direction the player is looking, if there is a block between the player and the look spot it teleports just infront or on top
+Pocket watch. would tell the player the time
+Climbing gloves. allows you to climb 3 blocks high
+Smoke bombs. Creates a large wall of smoke
+Herbicide spray. clears out all flowers and stuff ontop of grass
+Lava walker boots (like frost walker but lava)
