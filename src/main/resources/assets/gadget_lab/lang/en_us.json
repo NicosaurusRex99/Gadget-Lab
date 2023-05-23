@@ -1,5 +1,6 @@
 {
   "itemGroup.gadget_lab": "Gadget Lab",
+
   "item.gadget_lab.rebreather": "Rebreather",
   "item.gadget_lab.portable_crafting_table": "Portable Crafting Table",
   "item.gadget_lab.enigmatic_hold": "Enigmatic Hold",
@@ -8,5 +9,37 @@
 
   "tooltip.item.gadget_lab.rebreather": "Allows you to swim faster and breath underwater for 5 minutes",
   "tooltip.item.gadget_lab.portable_crafting_table": "A portable crafting table",
-  "tooltip.item.gadget_lab.enigmatic_hold": "Holds up-to 10 mobs and places them in the same order they were captured in"
+  "tooltip.item.gadget_lab.enigmatic_hold": "Holds up-to 10 mobs and places them in the same order they were captured in",
+  "tooltip.item.gadget_lab.gravity_boots": "Jump higher and removes fall damage",
+  "tooltip.item.gadget_lab.fortune_amulet": "Gives fortune when in the players inventory",
+  "tooltip.item.gadget_lab.harvesting_gloves": "Enhances crop yield",
+  "tooltip.item.gadget_lab.teleportation_wand": "Teleports 32 blocks in the direction the player is looking, if there is a block between the player and the look spot it teleports just infront or on top",
+  "tooltip.item.gadget_lab.pocket_watch": "Adds a hud with the game time",
+  "tooltip.item.gadget_lab.climbing_gloves": "Allows you to climb 3 blocks high",
+  "tooltip.item.gadget_lab.smoke_bombs": "Spawns a large area of smoke particles",
+  "tooltip.item.gadget_lab.herbicide_spray": "Clears out all flora ontop of grass",
+  "tooltip.item.gadget_lab.blaze_blaster": "Shoots blaze powder and creates fires",
+
+
+  "tooltip.block.gadget_lab.energy_transmitter": "Wirelessly power machines in a small radius at the cost of power",
+  "tooltip.block.gadget_lab.growth_accelerator": "Speeds up crop growth in a small radius",
+  "tooltip.block.gadget_lab.void_chest": "Voids all items placed inside",
+  "tooltip.block.gadget_lab.block_breaker": "Breaks blocks on the breaking face of the block breaker",
+  "tooltip.block.gadget_lab.launch_pad": "Launches the player fairly high",
+  "tooltip.block.gadget_lab.relic_pedestal": "Holds items",
+  "tooltip.block.gadget_lab.entity_magnet": "Attracts mobs, toggled via redstone.",
+  "tooltip.block.gadget_lab.cloud_platform": "You can place this block mid air allowing you to create platforms while flying",
+  "tooltip.block.gadget_lab.ore_extractor": "Mines ores directly below. Outputs above",
+  "tooltip.block.gadget_lab.carbon_compressor": "Turns various carbon items into diamonds",
+  "tooltip.block.gadget_lab.displacement_pad": "Teleports you to a predefined location",
+  "tooltip.block.gadget_lab.holographic_projector": "Renders an entity above the block. Set via enigmatic hold",
+  "tooltip.block.gadget_lab.soul_lantern": "Emits light and soul particles",
+  "tooltip.block.gadget_lab.slime_siphon": "Collects slimeballs from slimes above",
+  "tooltip.block.gadget_lab.quicksand": "Sand that can trap you",
+  "tooltip.block.gadget_lab.fishermans_net": "Gathers regular fishing items",
+  "tooltip.block.gadget_lab.sun_dial": "Tells the time",
+
+
+  "enchantment.gadget_lab.magma_walker": "Magma Walker",
+  "enchantment.gadget_lab.magma_walker.desc": "The Magma Walker enchantment temporarily freezes the lava around you and turns it into obsidian"
 }
