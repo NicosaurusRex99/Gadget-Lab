@@ -22,6 +22,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import nicusha.gadget_lab.events.PocketWatchEvent;
 import nicusha.gadget_lab.registry.*;
 import nicusha.gadget_lab.utils.Tab;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ public class Main
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::commonSetup);
+        bus.addListener(this::clientSetup);
         bus.addListener(Tab::registerTabs);
 
         BlockRegistry.BLOCKS.register(bus);
@@ -47,6 +49,11 @@ public class Main
     private void commonSetup(final FMLCommonSetupEvent event)
     {
 
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event)
+    {
+        MinecraftForge.EVENT_BUS.register(new PocketWatchEvent());
     }
 
 }

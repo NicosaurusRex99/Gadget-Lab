@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "gadget_lab:item/pocket_watch"
+  }
+}

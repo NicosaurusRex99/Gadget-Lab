@@ -20,7 +20,6 @@ Gravity Boots. Jump higher, no fall damage
 Fortune Amulet. Gives fortune
 Harvesting gloves. Enhances crop yield
 Teleportation wand. Teleports 32 blocks in the direction the player is looking, if there is a block between the player and the look spot it teleports just infront or on top
-Pocket watch. would tell the player the time
 Climbing gloves. allows you to climb 3 blocks high
 Smoke bombs. Creates a large wall of smoke
 Herbicide spray. clears out all flowers and stuff ontop of grass
