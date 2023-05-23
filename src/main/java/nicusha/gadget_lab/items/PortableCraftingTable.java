@@ -8,9 +8,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
-public class PortableCraftingTable extends Item {
-    public PortableCraftingTable(Properties properties) {
-        super(properties);
+public class PortableCraftingTable extends ItemMod {
+    public PortableCraftingTable() {
+        super(new Properties().stacksTo(1));
     }
 
     @Override
@@ -29,6 +29,4 @@ public class PortableCraftingTable extends Item {
             }
             return InteractionResultHolder.fail(player.getItemInHand(hand));
     }
-
-
 }

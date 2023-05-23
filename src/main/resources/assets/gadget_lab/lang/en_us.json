@@ -1,5 +1,12 @@
 {
   "itemGroup.gadget_lab": "Gadget Lab",
   "item.gadget_lab.rebreather": "Rebreather",
-  "item.gadget_lab.portable_crafting_table": "Portable Crafting Table"
+  "item.gadget_lab.portable_crafting_table": "Portable Crafting Table",
+  "item.gadget_lab.enigmatic_hold": "Enigmatic Hold",
+
+
+
+  "tooltip.item.gadget_lab.rebreather": "Allows you to swim faster and breath underwater for 5 minutes",
+  "tooltip.item.gadget_lab.portable_crafting_table": "A portable crafting table",
+  "tooltip.item.gadget_lab.enigmatic_hold": "Holds up-to 10 mobs and places them in the same order they were captured in"
 }

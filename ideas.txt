@@ -17,7 +17,6 @@ Quicksand. you know. sand that you fall in
 Fishermans net. a block that gathers and stores stuff you can get from fishing.
 Sun Dial. when right clicked it tells time, just an aesthetic block
 
-Enigmatic Hold. Captures a mob, you can place it anywhere
 Gravity Boots. Jump higher, no fall damage
 Fortune Amulet. Gives fortune
 Harvesting gloves. Enhances crop yield
