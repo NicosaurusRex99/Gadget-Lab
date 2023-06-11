@@ -1,7 +1,6 @@
 package nicusha.gadget_lab;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

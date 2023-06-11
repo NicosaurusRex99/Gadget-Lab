@@ -11,7 +11,8 @@ import javax.annotation.Nullable;
 import static net.minecraft.sounds.SoundEvents.*;
 
 public enum ArmorTypes implements ArmorMaterial {
-    REBREATHER(	0, 0, 0,0, 0, 6000, 0, ARMOR_EQUIP_CHAIN);
+    REBREATHER(	0, 0, 0,0, 0, 6000, 0, ARMOR_EQUIP_CHAIN),
+    GRAVITY_BOOTS(	0, 0, 0,1, 0, 2500, 0, ARMOR_EQUIP_ELYTRA);
 
     final String textureLocation, name;
     final SoundEvent equipSound;

@@ -17,26 +17,21 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class Rebreather extends ArmorItem {
-    public Rebreather() {
-        super(ArmorTypes.REBREATHER, Type.HELMET, new Item.Properties()
-                .rarity(Rarity.RARE).durability(6000));
+public class GravityBoots extends ArmorItem {
+
+    public GravityBoots() {
+        super(ArmorTypes.GRAVITY_BOOTS, Type.BOOTS, new Item.Properties().stacksTo(1));
     }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.get())) {
-            if (event.phase == TickEvent.Phase.END && player.isInWater()) {
-                ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
-                itemStack.hurtAndBreak(1, player, (player1) -> {
-                    player1.broadcastBreakEvent(player.getUsedItemHand());
-                });
-                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 3, 0, false, false));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3, 0, false, false));
-            }
+        if (player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistry.gravity_boots.get())) {
+            player.fallDistance = 0;
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2));
         }
     }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(Component.translatable("tooltip." + stack.getDescriptionId()));
