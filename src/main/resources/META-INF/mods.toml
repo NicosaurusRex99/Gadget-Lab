@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[45,)"
+loaderVersion="[46,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/NicosaurusRex99/Gadget-Lab/issues" #optional
 [[mods]] #mandatory
@@ -17,13 +17,13 @@ Gadget Lab is a fantastic mod that adds a variety of random items to assist you 
 [[dependencies.gadget_lab]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[45,)" #mandatory
+    versionRange="[46,)" #mandatory
     ordering="NONE"
     side="BOTH"
 # Here's another dependency
 [[dependencies.gadget_lab]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.4,1.20)"
+    versionRange="[1.20,1.21)"
     ordering="NONE"
     side="BOTH"

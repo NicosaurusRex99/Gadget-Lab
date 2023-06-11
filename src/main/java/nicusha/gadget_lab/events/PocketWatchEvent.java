@@ -26,15 +26,13 @@ public class PocketWatchEvent extends Gui {
 
     @SubscribeEvent
     public void renderGameOverlayEvent(RenderGuiOverlayEvent.Post event) {
-        Gui ui = mc.gui;
 
         int windowWidth = this.mc.getWindow().getGuiScaledWidth();
-        int windowHeight = this.mc.getWindow().getGuiScaledHeight();
         int yLocation = 10;
         int xLocation = windowWidth / 2;
 
         if (mc.player.inventory.contains(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Main.MODID, "pocket_watch")).getDefaultInstance())) {
-            GuiComponent.drawCenteredString(event.getPoseStack(), mc.font, time(mc.level), xLocation, yLocation, 0xFFFF00);
+            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, 0xFFFF00);
         }
     }
 

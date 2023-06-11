@@ -22,7 +22,7 @@ public class EnigmaticHold extends ItemMod {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
-        if (!player.level.isClientSide && entity.getType() != null) {
+        if (!player.level().isClientSide && entity.getType() != null) {
             CompoundTag entityTag = new CompoundTag();
             entity.saveWithoutId(entityTag);
             entityTag.putString("id", ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString());
