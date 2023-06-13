@@ -19,8 +19,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class Rebreather extends ArmorItem {
     public Rebreather() {
-        super(ArmorTypes.REBREATHER, Type.HELMET, new Item.Properties()
-                .rarity(Rarity.RARE).durability(6000));
+        super(ArmorTypes.REBREATHER, Type.HELMET, new Item.Properties().durability(6000));
     }
 
     @SubscribeEvent

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    " # ",
+    " H "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:chain"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  },
+  "result": {
+    "item": "gadget_lab:fortune_amulet",
+    "count": 1
+  }
+}
