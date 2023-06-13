@@ -28,7 +28,7 @@ public class GravityBoots extends ArmorItem {
         Player player = event.player;
         if (player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistry.gravity_boots.get())) {
             player.fallDistance = 0;
-            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2));
+            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2, false, false, false));
         }
     }
 
