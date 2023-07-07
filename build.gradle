@@ -71,11 +71,11 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.0.1'
-//	compileOnly fg.deobf("mezz.jei:jei-1.20-common-api:14.0.0.5") //Just Enough Items
-//    compileOnly fg.deobf("mezz.jei:jei-1.20-forge-api:14.0.0.5") //Just Enough Items
-//    runtimeOnly fg.deobf("mezz.jei:jei-1.20-common:14.0.0.5") //Just Enough Items
-//    runtimeOnly fg.deobf("mezz.jei:jei-1.20-forge:14.0.0.5") //Just Enough Items
+    minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
+	compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.2.0.22") //Just Enough Items
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.2.0.22") //Just Enough Items
+    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-common:15.2.0.22") //Just Enough Items
+    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.2.0.22") //Just Enough Items
 //    compileOnly fg.deobf("curse.maven:just-enough-resources-jer-240630:4526641") //Just Enough Resources
 //    runtimeOnly fg.deobf("curse.maven:just-enough-resources-jer-240630:4526641") //Just Enough Resources
 }

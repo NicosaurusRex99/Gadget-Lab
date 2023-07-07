@@ -17,7 +17,6 @@ Fishermans net. a block that gathers and stores stuff you can get from fishing.
 Sun Dial. when right clicked it tells time, just an aesthetic block
 
 Harvesting gloves. Enhances crop yield
-Teleportation wand. Teleports 32 blocks in the direction the player is looking, if there is a block between the player and the look spot it teleports just infront or on top
 Climbing gloves. allows you to climb 3 blocks high
 Smoke bombs. Creates a large wall of smoke
 Herbicide spray. clears out all flowers and stuff ontop of grass
