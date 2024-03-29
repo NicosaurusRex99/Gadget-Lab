@@ -8,6 +8,10 @@
   "item.gadget_lab.gravity_boots": "Gravity Boots",
   "item.gadget_lab.fortune_amulet": "Fortune Amulet",
   "item.gadget_lab.teleportation_wand": "Teleportation Wand",
+  "item.gadget_lab.smoke_bomb": "Smoke Bomb",
+
+
+  "entity.gadget_lab.smoke_bomb": "Smoke Bomb",
 
 
 
@@ -23,6 +27,7 @@
   "tooltip.item.gadget_lab.smoke_bombs": "Spawns a large area of smoke particles",
   "tooltip.item.gadget_lab.herbicide_spray": "Clears out all flora ontop of grass",
   "tooltip.item.gadget_lab.blaze_blaster": "Shoots blaze powder and creates fires",
+  "tooltip.item.gadget_lab.smoke_bomb": "When thrown creates a smokescreen",
 
 
   "tooltip.block.gadget_lab.energy_transmitter": "Wirelessly power machines in a small radius at the cost of power",
