@@ -1,23 +1,22 @@
 package nicusha.gadget_lab.entities;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.*;
 
 public class EntitySmokeBomb extends ThrowableProjectile {
     private static final double SMOKE_RADIUS = 5.0;
-    private static final int SMOKE_DURATION_TICKS = 1200;
-    private int smokeTicks;
+    private int smokeTicks = 1200;
 
     public EntitySmokeBomb(EntityType<? extends ThrowableProjectile> type, Level world) {
         super(type, world);
-        this.smokeTicks = SMOKE_DURATION_TICKS;
     }
 
     public EntitySmokeBomb(EntityType<? extends ThrowableProjectile> type, Level world, LivingEntity owner) {
         super(type, owner, world);
-        this.smokeTicks = SMOKE_DURATION_TICKS;
     }
 
     @Override
@@ -29,7 +28,6 @@ public class EntitySmokeBomb extends ThrowableProjectile {
         super.tick();
         if (this.smokeTicks > 0)
             this.smokeTicks--;
-
         for (int i = 0; i < 200; ++i) {
             double motionX = random.nextGaussian() * 0.02;
             double motionY = random.nextGaussian() * 0.02;
@@ -40,8 +38,14 @@ public class EntitySmokeBomb extends ThrowableProjectile {
             level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + offsetX, getY() + offsetY, getZ() + offsetZ, motionX, motionY, motionZ);
         }
 
-        if (this.smokeTicks <= 0 && !level().isClientSide) {
+        if (this.smokeTicks <= 0) {
             this.kill();
         }
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
+        setDeltaMovement(Vec3.ZERO);
     }
 }

@@ -18,7 +18,6 @@ Sun Dial. when right clicked it tells time, just an aesthetic block
 
 Harvesting gloves. Enhances crop yield
 Climbing gloves. allows you to climb 3 blocks high
-Smoke bombs. Creates a large wall of smoke
 Herbicide spray. clears out all flowers and stuff ontop of grass
 Lava walker boots (like frost walker but lava)
 Blaze blaster. a gun that shoots blaze powder
