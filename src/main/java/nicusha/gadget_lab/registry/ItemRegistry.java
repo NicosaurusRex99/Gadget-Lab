@@ -18,7 +18,6 @@ public class ItemRegistry {
     public static final RegistryObject<Item> fortune_amulet = registerItem("fortune_amulet", () -> new FortuneAmulet());
     public static final RegistryObject<Item> teleportation_wand = registerItem("teleportation_wand", () -> new TeleportationWand());
 
-
     private static <T extends Item> RegistryObject<T> registerItem(String registryId, Supplier<T> item) {
         return ITEMS.register(registryId, item);
     }

@@ -1,12 +1,7 @@
 package nicusha.gadget_lab.events;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screens.LoadingDotsText;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.*;
@@ -30,12 +25,22 @@ public class PocketWatchEvent extends Gui {
         int windowWidth = this.mc.getWindow().getGuiScaledWidth();
         int yLocation = 10;
         int xLocation = windowWidth / 2;
+        int textColor = 0xFFFF00;
 
         if (mc.player.inventory.contains(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Main.MODID, "pocket_watch")).getDefaultInstance())) {
-            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, 0xFFFF00);
+            if (isDaytime(mc.level)) {
+                textColor = 0xFFFF00;
+            } else {
+                textColor = 0x04D8F9;
+            }
+
+            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, textColor);
         }
     }
-
+    private boolean isDaytime(Level level) {
+        long time = level.getDayTime() % 24000;
+        return time >= 0 && time < 12000;
+    }
     private String time(Level level) {
         long time;
 

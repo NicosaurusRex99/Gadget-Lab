@@ -1,9 +1,6 @@
 {
   "pack": {
-    "description": {
-      "text": "Gadget lab resources"
-    },
-    "forge:server_data_pack_format": 15,
-    "pack_format": 15
+    "description": "${mod_id} resources",
+    "pack_format": 22
   }
 }
