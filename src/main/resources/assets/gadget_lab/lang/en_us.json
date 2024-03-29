@@ -11,6 +11,9 @@
   "item.gadget_lab.smoke_bomb": "Smoke Bomb",
 
 
+  "block.gadget_lab.pedestal": "Pedestal",
+
+
   "entity.gadget_lab.smoke_bomb": "Smoke Bomb",
 
 
@@ -35,7 +38,7 @@
   "tooltip.block.gadget_lab.void_chest": "Voids all items placed inside",
   "tooltip.block.gadget_lab.block_breaker": "Breaks blocks on the breaking face of the block breaker",
   "tooltip.block.gadget_lab.launch_pad": "Launches the player fairly high",
-  "tooltip.block.gadget_lab.relic_pedestal": "Holds items",
+  "tooltip.block.gadget_lab.pedestal": "Holds items",
   "tooltip.block.gadget_lab.entity_magnet": "Attracts mobs, toggled via redstone.",
   "tooltip.block.gadget_lab.cloud_platform": "You can place this block mid air allowing you to create platforms while flying",
   "tooltip.block.gadget_lab.ore_extractor": "Mines ores directly below. Outputs above",

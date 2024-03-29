@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "y": 90,
+      "model": "gadget_lab:block/pedestal"
+    },
+    "facing=south": {
+      "y": 180,
+      "model": "gadget_lab:block/pedestal"
+    },
+    "facing=north": {
+      "model": "gadget_lab:block/pedestal"
+    },
+    "facing=west": {
+      "y": 270,
+      "model": "gadget_lab:block/pedestal"
+    }
+  }
+}

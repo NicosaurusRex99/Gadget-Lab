@@ -24,6 +24,7 @@ public class Main
         bus.addListener(this::clientSetup);
 
         BlockRegistry.BLOCKS.register(bus);
+        BlockRegistry.BLOCK_ENTITIES.register(bus);
         ItemRegistry.ITEMS.register(bus);
         CreativeTabRegistry.TABS.register(bus);
         EntityRegistry.ENTITIES.register(bus);
@@ -39,6 +40,7 @@ public class Main
     private void clientSetup(final FMLClientSetupEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new PocketWatchEvent());
+        BlockRegistry.renderTiles();
     }
 
 }
