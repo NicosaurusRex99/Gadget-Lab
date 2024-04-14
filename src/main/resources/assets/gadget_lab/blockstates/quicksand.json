@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gadget_lab:block/quicksand"
+      },
+      {
+        "model": "gadget_lab:block/quicksand",
+        "y": 90
+      },
+      {
+        "model": "gadget_lab:block/quicksand",
+        "y": 180
+      },
+      {
+        "model": "gadget_lab:block/quicksand",
+        "y": 270
+      }
+    ]
+  }
+}

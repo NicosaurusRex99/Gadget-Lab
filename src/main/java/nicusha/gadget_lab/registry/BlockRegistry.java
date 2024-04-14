@@ -10,7 +10,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.registries.*;
 import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
-import nicusha.gadget_lab.blocks.Pedestal;
+import nicusha.gadget_lab.blocks.*;
 import nicusha.gadget_lab.client.PedestalBlockRenderer;
 
 import java.util.function.Supplier;
@@ -21,6 +21,7 @@ public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
     public static final RegistryObject<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
+    public static final RegistryObject<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
 
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = registerBlockEntity("pedestal", () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockRegistry.pedestal.get()).build(null));

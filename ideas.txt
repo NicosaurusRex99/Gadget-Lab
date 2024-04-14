@@ -11,7 +11,6 @@ Displacement Pad. teleports entities to a predefined location
 Holographic Projector. Projects an entity (you would use the mob id to define it) and renders it above the projector
 Soul Lantern. Projects light and soul particles
 Slime Siphon. if a slime is ontop of this block it would collect slimeballs over time
-Quicksand. you know. sand that you fall in
 Fishermans net. a block that gathers and stores stuff you can get from fishing.
 Sun Dial. when right clicked it tells time, just an aesthetic block
 

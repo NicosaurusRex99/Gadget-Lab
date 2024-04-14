@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "ingredient": {
+    "item": "gadget_lab:quicksand"
+  },
+  "result": "minecraft:sand",
+  "experience": 0.15,
+  "cookingtime": 200
+}
