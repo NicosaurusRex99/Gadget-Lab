@@ -28,4 +28,3 @@ Weather control device - toggles weather
 Charmeleon cloak - perma invisibility
 Ender compass - helps locate end structure
 Glider wings - slow fall
-Magnetic gloves - pulls items towards the player
