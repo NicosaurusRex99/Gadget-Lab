@@ -13,6 +13,7 @@ Soul Lantern. Projects light and soul particles
 Slime Siphon. if a slime is ontop of this block it would collect slimeballs over time
 Fishermans net. a block that gathers and stores stuff you can get from fishing.
 Sun Dial. when right clicked it tells time, just an aesthetic block
+Aurora shield - repels all hostile mobs within 32 blocks
 
 Harvesting gloves. Enhances crop yield
 Climbing gloves. allows you to climb 3 blocks high
@@ -22,3 +23,9 @@ Blaze blaster. a gun that shoots blaze powder
 Projectile Launcher. a gun for smoke bombs, grenades and flashbangs
 Grenades. A grenade
 Flashbangs. A flash bang
+Grappling hook -
+Weather control device - toggles weather
+Charmeleon cloak - perma invisibility
+Ender compass - helps locate end structure
+Glider wings - slow fall
+Magnetic gloves - pulls items towards the player
