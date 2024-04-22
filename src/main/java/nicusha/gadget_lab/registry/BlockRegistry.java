@@ -22,6 +22,7 @@ public class BlockRegistry {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
     public static final RegistryObject<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
     public static final RegistryObject<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
+    public static final RegistryObject<Block> unstable_obsidian = registerBlock("unstable_obsidian", () -> new UnstableObsidian());
 
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = registerBlockEntity("pedestal", () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockRegistry.pedestal.get()).build(null));

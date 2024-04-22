@@ -18,7 +18,6 @@ Aurora shield - repels all hostile mobs within 32 blocks
 Harvesting gloves. Enhances crop yield
 Climbing gloves. allows you to climb 3 blocks high
 Herbicide spray. clears out all flowers and stuff ontop of grass
-Lava walker boots (like frost walker but lava)
 Blaze blaster. a gun that shoots blaze powder
 Projectile Launcher. a gun for smoke bombs, grenades and flashbangs
 Grenades. A grenade
