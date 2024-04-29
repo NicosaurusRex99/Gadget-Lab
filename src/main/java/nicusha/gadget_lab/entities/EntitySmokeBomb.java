@@ -2,6 +2,7 @@ package nicusha.gadget_lab.entities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.Level;
@@ -20,8 +21,7 @@ public class EntitySmokeBomb extends ThrowableProjectile {
     }
 
     @Override
-    protected void defineSynchedData() {
-    }
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {}
 
     @Override
     public void tick() {

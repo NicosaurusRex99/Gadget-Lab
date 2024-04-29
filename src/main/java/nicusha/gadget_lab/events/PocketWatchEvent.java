@@ -2,41 +2,37 @@ package nicusha.gadget_lab.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.*;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import nicusha.gadget_lab.Main;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class PocketWatchEvent extends Gui {
     Minecraft mc;
 
     public PocketWatchEvent() {
-        super(Minecraft.getInstance(), Minecraft.getInstance().getItemRenderer());
+        super(Minecraft.getInstance());
         this.mc = Minecraft.getInstance();
     }
 
-    @SubscribeEvent
-    public void renderGameOverlayEvent(RenderGuiOverlayEvent.Post event) {
-
-        int windowWidth = this.mc.getWindow().getGuiScaledWidth();
-        int yLocation = 10;
-        int xLocation = windowWidth / 2;
-        int textColor = 0xFFFF00;
-
-        if (mc.player.inventory.contains(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Main.MODID, "pocket_watch")).getDefaultInstance())) {
-            if (isDaytime(mc.level)) {
-                textColor = 0xFFFF00;
-            } else {
-                textColor = 0x04D8F9;
-            }
-
-            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, textColor);
-        }
-    }
+    //TODO - Render overlay
+//    @SubscribeEvent
+//    public void renderGameOverlayEvent(RenderGuiOverlayEvent.Post event) {
+//
+//        int windowWidth = this.mc.getWindow().getGuiScaledWidth();
+//        int yLocation = 10;
+//        int xLocation = windowWidth / 2;
+//        int textColor = 0xFFFF00;
+//
+//        if (mc.player.inventory.contains(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Main.MODID, "pocket_watch")).getDefaultInstance())) {
+//            if (isDaytime(mc.level)) {
+//                textColor = 0xFFFF00;
+//            } else {
+//                textColor = 0x04D8F9;
+//            }
+//
+//            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, textColor);
+//        }
+//    }
     private boolean isDaytime(Level level) {
         long time = level.getDayTime() % 24000;
         return time >= 0 && time < 12000;

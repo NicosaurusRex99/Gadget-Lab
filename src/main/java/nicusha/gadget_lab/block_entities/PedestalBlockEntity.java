@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import nicusha.gadget_lab.registry.BlockRegistry;
 
 public class PedestalBlockEntity extends BlockEntity {
@@ -20,19 +20,19 @@ public class PedestalBlockEntity extends BlockEntity {
         super(BlockRegistry.PEDESTAL.get(), pos, state);
     }
 
-    @Override
-    public void saveAdditional(CompoundTag tag) {
-        tag.put("Inventory", inventory.serializeNBT());
-        tag.putLong("LastChangeTime", lastChangeTime);
-        super.saveAdditional(tag);
-    }
-
-    @Override
-    public void load(CompoundTag tag) {
-        inventory.deserializeNBT(tag.getCompound("Inventory"));
-        lastChangeTime = tag.getLong("LastChangeTime");
-        super.load(tag);
-    }
+//    @Override
+//    public void saveAdditional(CompoundTag tag) {
+//        tag.put("Inventory", inventory.serializeNBT());
+//        tag.putLong("LastChangeTime", lastChangeTime);
+//        super.saveAdditional(tag);
+//    }
+//
+//    @Override
+//    public void load(CompoundTag tag) {
+//        inventory.deserializeNBT(tag.getCompound("Inventory"));
+//        lastChangeTime = tag.getLong("LastChangeTime");
+//        super.load(tag);
+//    }
 
     public boolean isEmpty() {
         return inventory.getStackInSlot(0).isEmpty();

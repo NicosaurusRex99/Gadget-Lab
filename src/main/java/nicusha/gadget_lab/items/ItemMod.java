@@ -11,8 +11,10 @@ public class ItemMod extends Item {
     public ItemMod(Properties properties) {
         super(properties);
     }
+
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip."+stack.getDescriptionId()));
     }
+
 }

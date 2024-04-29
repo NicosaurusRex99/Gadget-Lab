@@ -46,7 +46,7 @@ public class Quicksand extends Block {
     }
 
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this)) {
+        if (!(entity instanceof LivingEntity) || level.getBlockState(entity.blockPosition().below()).is(this)) {
             entity.makeStuckInBlock(state, new Vec3((double)0.9F, 1.5D, (double)0.9F));
             if (level.isClientSide) {
                 RandomSource randomSource = level.getRandom();

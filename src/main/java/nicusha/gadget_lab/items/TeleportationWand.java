@@ -2,6 +2,7 @@ package nicusha.gadget_lab.items;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -40,9 +41,7 @@ public class TeleportationWand extends ItemMod {
         player.teleportTo(teleportBlockPos.getX() + 0.5, teleportBlockPos.getY() + 1, teleportBlockPos.getZ() + 0.5);
 
         if (!player.isCreative()) {
-            stack.hurtAndBreak(1, player, (player1) -> {
-                player1.broadcastBreakEvent(player.getUsedItemHand());
-            });
+            stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
         }
 
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);

@@ -1,13 +1,11 @@
 package nicusha.gadget_lab;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import nicusha.gadget_lab.events.PocketWatchEvent;
+import net.minecraft.world.item.*;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import nicusha.gadget_lab.registry.*;
 import org.slf4j.Logger;
 
@@ -17,31 +15,38 @@ public class Main
     public static final String MODID = "gadget_lab";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public Main()
+    public Main(IEventBus bus)
     {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::commonSetup);
-        bus.addListener(this::clientSetup);
 
         BlockRegistry.BLOCKS.register(bus);
-        BlockRegistry.BLOCK_ENTITIES.register(bus);
         ItemRegistry.ITEMS.register(bus);
-        CreativeTabRegistry.TABS.register(bus);
-        EntityRegistry.ENTITIES.register(bus);
+        BlockRegistry.BLOCK_ENTITIES.register(bus);
         EnchantmentRegistry.ENCHANTMENTS.register(bus);
+        EntityRegistry.ENTITIES.register(bus);
+        CreativeTabRegistry.TABS.register(bus);
 
-        MinecraftForge.EVENT_BUS.register(this);
+//        NeoForge.EVENT_BUS.register(this);
+        bus.addListener(this::addCreative);
+//        NeoForge.EVENT_BUS.addListener(Rebreather::onPlayerTick);
+//        NeoForge.EVENT_BUS.addListener(FortuneAmulet::onPlayerTick);
+//        NeoForge.EVENT_BUS.addListener(MagmaWalkerEvent::onEntityMoved);
+//        NeoForge.EVENT_BUS.addListener(PocketWatchEvent::renderGameOverlayEvent);
+//        NeoForge.EVENT_BUS.addListener(GravityBoots::onPlayerTick);
+//        NeoForge.EVENT_BUS.addListener(Rebreather::onPlayerTick);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
 
     }
-
-    private void clientSetup(final FMLClientSetupEvent event)
+    private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new PocketWatchEvent());
-        BlockRegistry.renderTiles();
+        if (event.getTabKey() == CreativeTabRegistry.CREATIVE_TAB.getKey())
+            for (var regObj : ItemRegistry.ITEMS.getEntries()) {
+                event.accept(regObj.get());
+            }
     }
 
 }

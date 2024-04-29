@@ -1,39 +1,32 @@
 package nicusha.gadget_lab.items;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.*;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import nicusha.gadget_lab.Main;
-import nicusha.gadget_lab.enums.ArmorTypes;
-import nicusha.gadget_lab.registry.ItemRegistry;
-
-import javax.annotation.Nullable;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GravityBoots extends ArmorItem {
 
     public GravityBoots() {
-        super(ArmorTypes.GRAVITY_BOOTS, Type.BOOTS, new Item.Properties().stacksTo(1));
+        //TODO - Gravity boots
+        super(ArmorMaterials.ARMADILLO, Type.BOOTS, new Item.Properties().stacksTo(1));
+//        super(ArmorTypes.GRAVITY_BOOTS, Type.BOOTS, new Item.Properties().stacksTo(1));
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        if (player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistry.gravity_boots.get())) {
-            player.fallDistance = 0;
-            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2, false, false, false));
-        }
+    public static void onPlayerTick(PlayerTickEvent event) {
+        Player player = event.getEntity();
+//        if (player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistry.gravity_boots.get())) {
+//            player.fallDistance = 0;
+//            player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2, false, false, false));
+//        }
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip." + stack.getDescriptionId()));
     }
+
 }

@@ -1,13 +1,12 @@
 package nicusha.gadget_lab.registry;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
-import net.minecraftforge.api.distmarker.*;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.registries.*;
+import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.registries.*;
 import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 import nicusha.gadget_lab.blocks.*;
@@ -18,14 +17,14 @@ import java.util.function.Supplier;
 import static nicusha.gadget_lab.Main.MODID;
 
 public class BlockRegistry {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
-    public static final RegistryObject<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
-    public static final RegistryObject<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
-    public static final RegistryObject<Block> unstable_obsidian = registerBlock("unstable_obsidian", () -> new UnstableObsidian());
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
+    public static final DeferredBlock<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
+    public static final DeferredBlock<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
+    public static final DeferredBlock<Block> unstable_obsidian = registerBlock("unstable_obsidian", () -> new UnstableObsidian());
 
 
-    public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = registerBlockEntity("pedestal", () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockRegistry.pedestal.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PedestalBlockEntity>> PEDESTAL = registerBlockEntity("pedestal", () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockRegistry.pedestal.get()).build(null));
 
 
     @OnlyIn(Dist.CLIENT)
@@ -33,19 +32,18 @@ public class BlockRegistry {
         BlockEntityRenderers.register(BlockRegistry.PEDESTAL.get(), PedestalBlockRenderer::new);
     }
 
-    private static <T extends Block> RegistryObject<T> registerTablessBlock(String registryName, Supplier<T> block, Rarity rarity) {
-        RegistryObject<T> registeredBlock = BLOCKS.register(registryName, block);
-        ItemRegistry.ITEMS.register(registryName, () -> new BlockItem(registeredBlock.get(), new Item.Properties().rarity(rarity)));
+    private static <T extends Block> DeferredBlock<T> registerTablessBlock(String registryName, Supplier<T> block) {
+        DeferredBlock<T> registeredBlock = BLOCKS.register(registryName, block);
+        ItemRegistry.ITEMS.register(registryName, () -> new BlockItem(registeredBlock.get(), new Item.Properties()));
         return registeredBlock;
     }
-    private static <T extends Block> RegistryObject<T> registerBlock(String registryName, Supplier<T> block) {
-        RegistryObject<T> registeredBlock = BLOCKS.register(registryName, block);
+    private static <T extends Block> DeferredBlock<T> registerBlock(String registryName, Supplier<T> block) {
+        DeferredBlock<T> registeredBlock = BLOCKS.register(registryName, block);
         ItemRegistry.ITEMS.register(registryName, () -> new BlockItem(registeredBlock.get(), new Item.Properties()));
         return registeredBlock;
     }
 
-    private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> registerBlockEntity(String registryName, Supplier<BlockEntityType<T>> tile) {
-        Main.LOGGER.info(registryName + " has registered");
+    private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> registerBlockEntity(String registryName, Supplier<BlockEntityType<T>> tile) {
         return BLOCK_ENTITIES.register(registryName, tile);
     }
 }

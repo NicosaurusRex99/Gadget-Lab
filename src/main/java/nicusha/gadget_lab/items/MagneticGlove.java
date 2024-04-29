@@ -12,7 +12,7 @@ import java.util.List;
 public class MagneticGlove extends ItemMod {
 
     public MagneticGlove() {
-        super(new Properties().stacksTo(1).rarity(Rarity.RARE));
+        super(new Properties().stacksTo(1));
     }
 
     @Override

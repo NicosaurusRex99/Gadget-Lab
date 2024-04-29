@@ -3,8 +3,7 @@ package nicusha.gadget_lab.blocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -13,8 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.gameevent.GameEventListener;
-import nicusha.gadget_lab.Main;
+import net.minecraft.world.phys.BlockHitResult;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,13 +34,13 @@ public class Pedestal extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, net.minecraft.world.phys.BlockHitResult hit) {
-        BlockEntity blockEntity = worldIn.getBlockEntity(pos);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof PedestalBlockEntity) {
             PedestalBlockEntity pedestal = (PedestalBlockEntity) blockEntity;
             pedestal.interact(player);
         }
-        return InteractionResult.PASS;
+        return super.useItemOn(stack, state, level, pos, player, hand, result);
     }
 
     @Override
@@ -61,7 +59,7 @@ public class Pedestal extends BaseEntityBlock {
             hasItem = ((PedestalBlockEntity) blockEntity).hasItem();
         }
         return this.defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection().getClockWise())
+                .setValue(FACING, context.getHorizontalDirection())
                 .setValue(HAS_ITEM, hasItem);
     }
 
@@ -95,7 +93,7 @@ public class Pedestal extends BaseEntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip."+stack.getDescriptionId()));
     }
 }
