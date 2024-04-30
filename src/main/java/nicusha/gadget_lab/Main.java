@@ -1,11 +1,13 @@
 package nicusha.gadget_lab;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import nicusha.gadget_lab.events.*;
+import nicusha.gadget_lab.items.*;
 import nicusha.gadget_lab.registry.*;
 import org.slf4j.Logger;
 
@@ -17,7 +19,8 @@ public class Main
 
     public Main(IEventBus bus)
     {
-        bus.addListener(this::commonSetup);
+        bus.addListener(this::common);
+        bus.addListener(this::client);
 
         BlockRegistry.BLOCKS.register(bus);
         ItemRegistry.ITEMS.register(bus);
@@ -26,20 +29,20 @@ public class Main
         EntityRegistry.ENTITIES.register(bus);
         CreativeTabRegistry.TABS.register(bus);
 
-//        NeoForge.EVENT_BUS.register(this);
         bus.addListener(this::addCreative);
-//        NeoForge.EVENT_BUS.addListener(Rebreather::onPlayerTick);
-//        NeoForge.EVENT_BUS.addListener(FortuneAmulet::onPlayerTick);
-//        NeoForge.EVENT_BUS.addListener(MagmaWalkerEvent::onEntityMoved);
-//        NeoForge.EVENT_BUS.addListener(PocketWatchEvent::renderGameOverlayEvent);
-//        NeoForge.EVENT_BUS.addListener(GravityBoots::onPlayerTick);
-//        NeoForge.EVENT_BUS.addListener(Rebreather::onPlayerTick);
 
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
+    private void common(final FMLCommonSetupEvent event)
     {
-
+//        NeoForge.EVENT_BUS.register(MagmaWalkerEvent.class);
+//        NeoForge.EVENT_BUS.register(Rebreather.class);
+//        NeoForge.EVENT_BUS.register(GravityBoots.class);
+//        NeoForge.EVENT_BUS.register(FortuneAmulet.class);
+    }
+    private void client(final FMLClientSetupEvent event)
+    {
+        NeoForge.EVENT_BUS.register(PocketWatchEvent.class);
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
