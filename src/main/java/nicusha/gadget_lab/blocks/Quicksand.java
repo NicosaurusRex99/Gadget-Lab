@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
@@ -22,7 +21,7 @@ import net.minecraft.world.phys.shapes.*;
 import nicusha.gadget_lab.Main;
 
 
-public class Quicksand extends Block {
+public class Quicksand extends FallingBlock {
     public static final MapCodec<Quicksand> CODEC = simpleCodec(Quicksand::new);
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.9F, 1.0D);
 
@@ -31,7 +30,9 @@ public class Quicksand extends Block {
     }
 
     public Quicksand() {
-        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
+        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND)
+//                .instrument(NoteBlockInstrument.SNARE)
+                .strength(0.5F).sound(SoundType.SAND));
     }
     public Quicksand(Properties properties) {
         super(properties);
