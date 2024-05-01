@@ -7,7 +7,6 @@ import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import nicusha.gadget_lab.events.*;
-import nicusha.gadget_lab.items.*;
 import nicusha.gadget_lab.registry.*;
 import org.slf4j.Logger;
 
@@ -42,6 +41,7 @@ public class Main
     }
     private void client(final FMLClientSetupEvent event)
     {
+        BlockRegistry.renderTiles();
         NeoForge.EVENT_BUS.register(PocketWatchEvent.class);
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)

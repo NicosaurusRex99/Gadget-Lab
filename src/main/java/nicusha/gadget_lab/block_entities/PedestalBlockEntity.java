@@ -1,6 +1,6 @@
 package nicusha.gadget_lab.block_entities;
 
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -20,19 +20,21 @@ public class PedestalBlockEntity extends BlockEntity {
         super(BlockRegistry.PEDESTAL.get(), pos, state);
     }
 
-//    @Override
-//    public void saveAdditional(CompoundTag tag) {
-//        tag.put("Inventory", inventory.serializeNBT());
-//        tag.putLong("LastChangeTime", lastChangeTime);
-//        super.saveAdditional(tag);
-//    }
-//
-//    @Override
-//    public void load(CompoundTag tag) {
-//        inventory.deserializeNBT(tag.getCompound("Inventory"));
-//        lastChangeTime = tag.getLong("LastChangeTime");
-//        super.load(tag);
-//    }
+    @Override
+    public void saveAdditional(CompoundTag data, HolderLookup.Provider registries) {
+        super.saveAdditional(data, registries);
+        var inv = inventory;
+        data.put("Inventory", inv.serializeNBT(registries));
+        data.putLong("LastChangeTime", lastChangeTime);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.loadAdditional(pTag, pRegistries);
+        var inv = inventory;
+        inv.deserializeNBT(pRegistries, pTag.getCompound("Inventory"));
+        lastChangeTime = pTag.getLong("LastChangeTime");
+    }
 
     public boolean isEmpty() {
         return inventory.getStackInSlot(0).isEmpty();
