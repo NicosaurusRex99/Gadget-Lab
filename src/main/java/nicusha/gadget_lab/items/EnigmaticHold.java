@@ -1,66 +1,56 @@
 package nicusha.gadget_lab.items;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.*;
+
+import java.util.*;
 
 public class EnigmaticHold extends ItemMod {
-    private static final String CAPTURED_MOBS_TAG_KEY = "capturedMobs";
-
     public EnigmaticHold() {
         super(new Properties().stacksTo(1));
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
-        if (!player.level().isClientSide && entity.getType() != null) {
-            CompoundTag entityTag = new CompoundTag();
-            entity.saveWithoutId(entityTag);
-            entityTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString());
-
-            //TODO - tags
-//            ListTag capturedMobsTag = stack.getOrCreateTag().getList(CAPTURED_MOBS_TAG_KEY, 10);
-//            capturedMobsTag.add(entityTag);
-//            stack.getOrCreateTag().put(CAPTURED_MOBS_TAG_KEY, capturedMobsTag);
-
-            player.setItemInHand(hand, stack);
-            entity.remove(Entity.RemovalReason.DISCARDED);
-        }
+//        if (!player.level().isClientSide && entity.getType() != null && stack.get(DataComponentRegistry.SELECTED_MOB.get()) == null) {
+//            stack.set(DataComponentRegistry.SELECTED_MOB.get(), new MobFromUUIDComponent(Optional.of(entity.getUUID()), Optional.of(entity.getDisplayName())));
+//        }
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        Player player = context.getPlayer();
-        InteractionHand hand = context.getHand();
-        Level world = context.getLevel();
-        ItemStack itemStack = player.getItemInHand(hand);
-
-        //TODO - Place mobs
-//        if (!world.isClientSide()) {
-//            BlockPos blockPos = context.getClickedPos();
-//            ListTag capturedMobsTag = itemStack.getOrCreateTag().getList(CAPTURED_MOBS_TAG_KEY, 10);
-//            if (capturedMobsTag.isEmpty()) {
-//                return InteractionResult.PASS;
-//            }
+//        Player player = context.getPlayer();
+//        InteractionHand hand = context.getHand();
+//        Level world = context.getLevel();
+//        ItemStack stack = player.getItemInHand(hand);
 //
-//            CompoundTag tag = (CompoundTag) capturedMobsTag.remove(capturedMobsTag.size() - 1);
-//            EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(tag.getString("id")));
-//            if (type != null) {
-//                type.spawn((ServerLevel) world, tag, null, blockPos.above(), MobSpawnType.SPAWN_EGG, false, false);
-//                player.setItemInHand(hand, itemStack);
-//                return InteractionResult.SUCCESS;
+//        if (!world.isClientSide()) {
+//            BlockPos pos = context.getClickedPos();
+//            MobFromUUIDComponent component = stack.get(DataComponentRegistry.SELECTED_MOB.get());
+//            if(component != null && component.uuid() != null) {
+//                if (world instanceof ServerLevel level) {
+//                    Entity entity = level.getEntities().get(component.uuid().get());
+//                    if (entity != null) {
+//                        entity.spawnAtLocation(stack);
+//                        entity.moveTo(pos.getX(), pos.getY() + 1, pos.getZ());
+//                        world.addFreshEntity(entity);
+//                    }
+//                }
 //            }
-//        }
+//            stack.remove(DataComponentRegistry.SELECTED_MOB.get());
+//            }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.wip."+stack.getDescriptionId()));
     }
 
 }

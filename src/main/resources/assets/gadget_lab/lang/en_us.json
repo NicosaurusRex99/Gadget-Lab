@@ -24,6 +24,7 @@
   "tooltip.item.gadget_lab.rebreather": "Allows you to swim faster and breath underwater for 5 minutes",
   "tooltip.item.gadget_lab.portable_crafting_table": "A portable crafting table",
   "tooltip.item.gadget_lab.enigmatic_hold": "Holds up-to 10 mobs and places them in the same order they were captured in",
+  "tooltip.wip.item.gadget_lab.enigmatic_hold": "Currently does not function",
   "tooltip.item.gadget_lab.gravity_boots": "Jump higher and removes fall damage",
   "tooltip.item.gadget_lab.fortune_amulet": "Gives fortune when in the players inventory",
   "tooltip.item.gadget_lab.harvesting_gloves": "Enhances crop yield",

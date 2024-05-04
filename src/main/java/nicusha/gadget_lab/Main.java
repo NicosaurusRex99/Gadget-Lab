@@ -27,6 +27,7 @@ public class Main
         EnchantmentRegistry.ENCHANTMENTS.register(bus);
         EntityRegistry.ENTITIES.register(bus);
         CreativeTabRegistry.TABS.register(bus);
+        DataComponentRegistry.COMPONENTS.register(bus);
 
         bus.addListener(this::addCreative);
 
@@ -34,10 +35,7 @@ public class Main
 
     private void common(final FMLCommonSetupEvent event)
     {
-//        NeoForge.EVENT_BUS.register(MagmaWalkerEvent.class);
-//        NeoForge.EVENT_BUS.register(Rebreather.class);
-//        NeoForge.EVENT_BUS.register(GravityBoots.class);
-//        NeoForge.EVENT_BUS.register(FortuneAmulet.class);
+
     }
     private void client(final FMLClientSetupEvent event)
     {
