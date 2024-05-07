@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "gadget_lab:smoke_bomb",
+    "id": "gadget_lab:smoke_bomb",
     "count": 3
   }
 }

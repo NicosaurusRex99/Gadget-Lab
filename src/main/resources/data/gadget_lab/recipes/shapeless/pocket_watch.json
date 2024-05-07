@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
   "ingredients": [
     {
       "item": "minecraft:chain"
@@ -9,7 +10,7 @@
     }
   ],
   "result": {
-    "item": "gadget_lab:pocket_watch",
+    "id": "gadget_lab:pocket_watch",
     "count": 1
   }
 }

@@ -5,9 +5,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.registries.*;
-import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 import nicusha.gadget_lab.blocks.*;
 import nicusha.gadget_lab.client.PedestalBlockRenderer;
@@ -22,6 +23,25 @@ public class BlockRegistry {
     public static final DeferredBlock<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
     public static final DeferredBlock<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
     public static final DeferredBlock<Block> unstable_obsidian = registerBlock("unstable_obsidian", () -> new UnstableObsidian());
+
+    //Solid coloured blocks
+    public static final DeferredBlock<Block> white = registerBlock("white", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> orange = registerBlock("orange", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> magenta = registerBlock("magenta", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_MAGENTA).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> light_blue = registerBlock("light_blue", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> yellow = registerBlock("yellow", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> light_green = registerBlock("light_green", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> pink = registerBlock("pink", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> gray = registerBlock("gray", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> light_gray = registerBlock("light_gray", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> cyan = registerBlock("cyan", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> purple = registerBlock("purple", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> blue = registerBlock("blue", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> brown = registerBlock("brown", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> green = registerBlock("green", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> red = registerBlock("red", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> black = registerBlock("black", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(1.5F, 6.0F)));
+
 
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PedestalBlockEntity>> PEDESTAL = registerBlockEntity("pedestal", () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockRegistry.pedestal.get()).build(null));

@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
-license="${mod_license}"
+license="All Rights Reserved"
 issueTrackerURL="https://github.com/NicosaurusRex99/Gadget-Lab/issues"
 
 [[mods]]
@@ -10,8 +10,8 @@ displayName="Gadget Lab"
 updateJSONURL="https://raw.githubusercontent.com/NicosaurusRex99/Nicusha-mod-assets/main/gadget_lab_update.json"
 displayURL="https://legacy.curseforge.com/minecraft/mc-mods/gadget-lab"
 logoFile="gadget_lab.png"
-authors="${mod_authors}"
-description='''${mod_description}'''
+authors="Nicusha"
+description='''Gadget Lab is a Minecraft mod that adds a variety of random items to enhance gameplay, offering conveniences and improvements to your Minecraft experience.'''
 
 
 [[accessTransformers]]

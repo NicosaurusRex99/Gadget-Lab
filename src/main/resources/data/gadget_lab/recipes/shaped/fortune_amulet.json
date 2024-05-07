@@ -14,7 +14,7 @@
     }
   },
   "result": {
-    "item": "gadget_lab:fortune_amulet",
+    "id": "gadget_lab:fortune_amulet",
     "count": 1
   }
 }

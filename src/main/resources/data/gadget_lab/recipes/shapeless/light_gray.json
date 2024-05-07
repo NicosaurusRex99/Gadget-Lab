@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "blocks",
+  "group": "solid_blocks",
+  "ingredients": [
+    {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    {
+      "item": "minecraft:light_gray_dye"
+    }
+  ],
+  "result": {
+    "id": "gadget_lab:light_gray"
+  }
+}

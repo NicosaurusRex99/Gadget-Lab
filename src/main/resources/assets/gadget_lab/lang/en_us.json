@@ -15,6 +15,23 @@
   "block.gadget_lab.pedestal": "Pedestal",
   "block.gadget_lab.quicksand": "Quicksand",
   "block.gadget_lab.unstable_obsidian": "Unstable Obsidian",
+  "block.gadget_lab.orange": "Orange",
+  "block.gadget_lab.magenta": "Magenta",
+  "block.gadget_lab.light_blue": "Light Blue",
+  "block.gadget_lab.yellow": "Yellow",
+  "block.gadget_lab.light_green": "Light Green",
+  "block.gadget_lab.pink": "Pink",
+  "block.gadget_lab.gray": "Gray",
+  "block.gadget_lab.light_gray": "Light Gray",
+  "block.gadget_lab.cyan": "Cyan",
+  "block.gadget_lab.purple": "Purple",
+  "block.gadget_lab.blue": "Blue",
+  "block.gadget_lab.brown": "Brown",
+  "block.gadget_lab.green": "Green",
+  "block.gadget_lab.red": "Red",
+  "block.gadget_lab.black": "Black",
+  "block.gadget_lab.white": "White",
+
 
 
   "entity.gadget_lab.smoke_bomb": "Smoke Bomb",

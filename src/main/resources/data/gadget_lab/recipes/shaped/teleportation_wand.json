@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "gadget_lab:teleportation_wand",
+    "id": "gadget_lab:teleportation_wand",
     "count": 1
   }
 }

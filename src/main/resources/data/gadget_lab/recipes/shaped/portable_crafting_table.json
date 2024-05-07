@@ -14,7 +14,7 @@
     }
   },
   "result": {
-    "item": "gadget_lab:portable_crafting_table",
+    "id": "gadget_lab:portable_crafting_table",
     "count": 1
   }
 }

@@ -1,6 +1,22 @@
 {
   "values": [
     "gadget_lab:unstable_obsidian",
-    "gadget_lab:pedestal"
+    "gadget_lab:pedestal",
+    "gadget_lab:white",
+    "gadget_lab:orange",
+    "gadget_lab:magenta",
+    "gadget_lab:light_blue",
+    "gadget_lab:yellow",
+    "gadget_lab:light_green",
+    "gadget_lab:pink",
+    "gadget_lab:gray",
+    "gadget_lab:light_gray",
+    "gadget_lab:cyan",
+    "gadget_lab:purple",
+    "gadget_lab:blue",
+    "gadget_lab:brown",
+    "gadget_lab:green",
+    "gadget_lab:red",
+    "gadget_lab:black"
   ]
 }
