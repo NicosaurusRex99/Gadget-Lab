@@ -20,9 +20,10 @@ import static nicusha.gadget_lab.Main.MODID;
 public class BlockRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
-    public static final DeferredBlock<Block> pedestal = registerBlock("pedestal", () -> new Pedestal());
-    public static final DeferredBlock<Block> quicksand = registerBlock("quicksand", () -> new Quicksand());
-    public static final DeferredBlock<Block> unstable_obsidian = registerBlock("unstable_obsidian", () -> new UnstableObsidian());
+    public static final DeferredBlock<Block> pedestal = registerBlock("pedestal", Pedestal::new);
+    public static final DeferredBlock<Block> quicksand = registerBlock("quicksand", Quicksand::new);
+    public static final DeferredBlock<Block> unstable_obsidian = registerBlock("unstable_obsidian", UnstableObsidian::new);
+    public static final DeferredBlock<Block> launch_pad = registerBlock("launch_pad", LaunchPadBlock::new);
 
     //Solid coloured blocks
     public static final DeferredBlock<Block> white = registerBlock("white", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F)));

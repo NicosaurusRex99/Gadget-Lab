@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
@@ -30,16 +31,14 @@ public class Quicksand extends FallingBlock {
     }
 
     public Quicksand() {
-        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND)
-//                .instrument(NoteBlockInstrument.SNARE)
-                .strength(0.5F).sound(SoundType.SAND));
+        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
     }
     public Quicksand(Properties properties) {
         super(properties);
     }
 
     public boolean skipRendering(BlockState currentState, BlockState newState, Direction direction) {
-        return newState.is(this) ? true : super.skipRendering(currentState, newState, direction);
+        return newState.is(this) || super.skipRendering(currentState, newState, direction);
     }
 
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
@@ -99,7 +98,9 @@ public class Quicksand extends FallingBlock {
         return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Main.MODID, "entity_walk_on_quicksand")));
     }
 
-    public boolean isPathfindable(BlockState state, BlockGetter blockGetter, BlockPos pos, PathComputationType pathComputationType) {
+    @Override
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return true;
     }
+
 }

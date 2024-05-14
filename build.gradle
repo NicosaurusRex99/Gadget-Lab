@@ -55,9 +55,9 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_version}"
-    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
-    implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+//    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_version}"
+//    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
+//    implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
 
 }
 

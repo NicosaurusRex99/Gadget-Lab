@@ -2,7 +2,6 @@ Energy Transmitter block. Wirelessly power machines in a small radius at the cos
 Growth Accelerator. Speeds up growth of crops in a 3x3x1 area (maybe add variants of this for more range?)
 Void Chest. Deletes excess items
 Block Breaker. Breaks blocks (can be pushed via piston)
-Launch Pad. Launches the player 16ish blocks in the air
 Entity Magnet Block. Would attract mobs and not let them run (toggled via redstone?)
 Cloud platform. You can place this block mid air allowing you to create platforms while flying (mostly a creative util but can be helpful with other mods)
 Ore extractor. Would mine ores directly below it at the cost of power
