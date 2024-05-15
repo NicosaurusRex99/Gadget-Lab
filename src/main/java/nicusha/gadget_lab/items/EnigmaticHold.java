@@ -16,6 +16,7 @@ public class EnigmaticHold extends ItemMod {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
+        //TODO - fix enigmatic hold
 //        if (!player.level().isClientSide && entity.getType() != null && stack.get(DataComponentRegistry.SELECTED_MOB.get()) == null) {
 //            stack.set(DataComponentRegistry.SELECTED_MOB.get(), new MobFromUUIDComponent(Optional.of(entity.getUUID()), Optional.of(entity.getDisplayName())));
 //        }

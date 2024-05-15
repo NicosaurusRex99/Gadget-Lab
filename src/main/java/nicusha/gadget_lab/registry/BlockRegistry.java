@@ -23,7 +23,7 @@ public class BlockRegistry {
     public static final DeferredBlock<Block> pedestal = registerBlock("pedestal", Pedestal::new);
     public static final DeferredBlock<Block> quicksand = registerBlock("quicksand", Quicksand::new);
     public static final DeferredBlock<Block> unstable_obsidian = registerBlock("unstable_obsidian", UnstableObsidian::new);
-    public static final DeferredBlock<Block> launch_pad = registerBlock("launch_pad", LaunchPadBlock::new);
+    public static final DeferredBlock<Block> launch_pad = registerBlock("launch_pad", LaunchPad::new);
 
     //Solid coloured blocks
     public static final DeferredBlock<Block> white = registerBlock("white", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.5F, 6.0F)));

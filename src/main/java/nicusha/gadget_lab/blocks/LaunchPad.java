@@ -13,10 +13,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LaunchPadBlock extends Block {
+public class LaunchPad extends Block {
     private static final VoxelShape SHAPE = Shapes.or(Block.box(2, 0, 2, 14, 1, 14), Block.box(5, 1, 5, 11, 2, 11), Block.box(4, 1, 4, 12, 2, 12));
 
-    public LaunchPadBlock() {
+    public LaunchPad() {
         super(Block.Properties.of().strength(1.5F, 0.3F).pushReaction(PushReaction.DESTROY).randomTicks().jumpFactor(2).sound(SoundType.SLIME_BLOCK));
     }
 

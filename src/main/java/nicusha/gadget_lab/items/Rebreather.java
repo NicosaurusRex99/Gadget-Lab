@@ -2,6 +2,7 @@ package nicusha.gadget_lab.items;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -23,14 +24,14 @@ public class Rebreather extends ArmorItem {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
-//        if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.get())) {
-//            if (player.isInWater()) {
-//                ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
-//                itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
-//                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 3, 0, false, false));
-//                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3, 0, false, false));
-//            }
-//        }
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.get())) {
+            if (player.isInWater()) {
+                ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
+                itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 3, 0, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3, 0, false, false));
+            }
+        }
     }
 
     @Override

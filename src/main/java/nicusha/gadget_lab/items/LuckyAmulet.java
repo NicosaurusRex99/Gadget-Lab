@@ -12,8 +12,8 @@ import nicusha.gadget_lab.registry.ItemRegistry;
 
 
 @EventBusSubscriber(modid = Main.MODID)
-public class FortuneAmulet extends ItemMod {
-    public FortuneAmulet() {
+public class LuckyAmulet extends ItemMod {
+    public LuckyAmulet() {
         super(new Item.Properties().durability(500));
     }
 
@@ -21,7 +21,7 @@ public class FortuneAmulet extends ItemMod {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         if (player != null && player.isAlive()) {
-            ItemStack fortuneAmulet = new ItemStack(ItemRegistry.fortune_amulet.get());
+            ItemStack fortuneAmulet = new ItemStack(ItemRegistry.lucky_amulet.get());
             if (player.getInventory().contains(fortuneAmulet)) {
                 if (!player.hasEffect(MobEffects.LUCK)) {
                     MobEffectInstance fortuneEffect = new MobEffectInstance(MobEffects.LUCK, 120, 2, false, false, false);

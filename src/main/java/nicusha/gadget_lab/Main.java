@@ -28,8 +28,10 @@ public class Main
         EntityRegistry.ENTITIES.register(bus);
         CreativeTabRegistry.TABS.register(bus);
         DataComponentRegistry.COMPONENTS.register(bus);
+        SoundRegistry.SOUNDS.register(bus);
 
         bus.addListener(this::addCreative);
+        bus.addListener(EntityRegistry::registerRenderers);
 
     }
 
