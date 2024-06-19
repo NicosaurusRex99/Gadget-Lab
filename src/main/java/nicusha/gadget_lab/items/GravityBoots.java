@@ -22,7 +22,7 @@ public class GravityBoots extends ArmorItem {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
-        if (player.getInventory().armor.get(0).is(ItemRegistry.gravity_boots.get())) {
+        if (player.getInventory().armor.get(0).is(ItemRegistry.gravity_boots)) {
             player.fallDistance = 0;
             player.addEffect(new MobEffectInstance(MobEffects.JUMP, 3, 2, false, false, false));
         }

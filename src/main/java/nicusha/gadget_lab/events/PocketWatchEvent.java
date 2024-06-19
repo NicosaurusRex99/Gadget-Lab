@@ -2,6 +2,7 @@ package nicusha.gadget_lab.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
@@ -20,7 +21,7 @@ public class PocketWatchEvent{
         int xLocation = windowWidth / 2;
         int textColor = 0xFFFF00;
 
-        if (mc.player.getInventory().contains(ItemRegistry.pocket_watch.get().getDefaultInstance())) {
+        if (mc.player.getInventory().contains(new ItemStack(ItemRegistry.pocket_watch.asItem()))) {
             if (isDaytime(mc.level)) {
                 textColor = 0xFFFF00;
             } else {

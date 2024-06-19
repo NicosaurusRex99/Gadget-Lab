@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
@@ -20,10 +21,10 @@ public class RenderSmokeBomb<T extends ThrowableProjectile> extends EntityRender
     private final ItemRenderer itemRenderer;
 
     public RenderSmokeBomb(final Context context, final String name) {
-        this(context, new ResourceLocation(Main.MODID, "textures/projectiles/" + name + ".png"));
+        this(context, ResourceLocation.fromNamespaceAndPath(Main.MODID, "textures/projectiles/" + name + ".png"));
     }
     public RenderSmokeBomb(final Context context) {
-        this(context, new ResourceLocation("textures/particle/generic_0.png"));
+        this(context, ResourceLocation.withDefaultNamespace("textures/particle/generic_0.png"));
     }
     public RenderSmokeBomb(final Context context, final ResourceLocation texture) {
         super(context);
@@ -40,7 +41,7 @@ public class RenderSmokeBomb<T extends ThrowableProjectile> extends EntityRender
             pPoseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
             pPoseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
             this.itemRenderer.renderStatic(
-                            ItemRegistry.smoke_bomb.get().getDefaultInstance(),
+                            new ItemStack(ItemRegistry.smoke_bomb.asItem()),
                             ItemDisplayContext.GROUND,
                             pPackedLight,
                             OverlayTexture.NO_OVERLAY,

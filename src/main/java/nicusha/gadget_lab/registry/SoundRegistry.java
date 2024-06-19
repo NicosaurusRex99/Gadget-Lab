@@ -20,6 +20,6 @@ public class SoundRegistry {
     }
 
     private static SoundEvent createSoundEvent(String soundPath) {
-        return SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, soundPath));
+        return SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, soundPath));
     }
 }

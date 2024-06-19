@@ -21,7 +21,7 @@ public class LuckyAmulet extends ItemMod {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         if (player != null && player.isAlive()) {
-            ItemStack fortuneAmulet = new ItemStack(ItemRegistry.lucky_amulet.get());
+            ItemStack fortuneAmulet = new ItemStack(ItemRegistry.lucky_amulet.asItem());
             if (player.getInventory().contains(fortuneAmulet)) {
                 if (!player.hasEffect(MobEffects.LUCK)) {
                     MobEffectInstance fortuneEffect = new MobEffectInstance(MobEffects.LUCK, 120, 2, false, false, false);

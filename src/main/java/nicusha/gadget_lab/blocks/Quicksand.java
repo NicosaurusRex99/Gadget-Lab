@@ -95,7 +95,7 @@ public class Quicksand extends FallingBlock {
     }
 
     public static boolean canEntityWalkOnQuicksand(Entity entity) {
-        return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Main.MODID, "entity_walk_on_quicksand")));
+        return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Main.MODID, "entity_walk_on_quicksand")));
     }
 
     @Override

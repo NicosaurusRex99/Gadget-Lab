@@ -31,7 +31,7 @@ public class ArmourMaterials {
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> armourType, int enchantability, Holder<SoundEvent> equipSound,
             float toughness, float knockbackResistance, Supplier<Ingredient> repair) {
-        List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(new ResourceLocation(Main.MODID, name)));
+        List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Main.MODID, name)));
         return register(name, armourType, enchantability, equipSound, toughness, knockbackResistance, repair, list);
     }
 
@@ -41,7 +41,7 @@ public class ArmourMaterials {
         for (ArmorItem.Type armoritem$type : ArmorItem.Type.values()) {
             enummap.put(armoritem$type, armourType.get(armoritem$type));
         }
-        return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, new ResourceLocation(Main.MODID, name), new ArmorMaterial(enummap, enchantability, equipSound, repair, pLayers, toughness, knockbackResistance)
+        return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, ResourceLocation.fromNamespaceAndPath(Main.MODID, name), new ArmorMaterial(enummap, enchantability, equipSound, repair, pLayers, toughness, knockbackResistance)
         );
     }
 }

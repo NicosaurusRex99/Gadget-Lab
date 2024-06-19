@@ -46,7 +46,7 @@ public class HerbicideSpray extends ItemMod {
 
         for (BlockPos targetPos : positions) {
             BlockState targetState = world.getBlockState(targetPos);
-            if (targetState.is(BlockTags.create(new ResourceLocation(Main.MODID, "vegetation")))) {
+            if (targetState.is(BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MODID, "vegetation")))) {
                 world.setBlock(targetPos, Blocks.AIR.defaultBlockState(), 3);
             }
         }

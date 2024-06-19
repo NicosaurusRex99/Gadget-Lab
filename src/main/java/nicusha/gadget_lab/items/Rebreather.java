@@ -24,7 +24,7 @@ public class Rebreather extends ArmorItem {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.get())) {
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.asItem())) {
             if (player.isInWater()) {
                 ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
                 itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));

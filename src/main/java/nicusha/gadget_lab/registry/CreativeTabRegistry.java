@@ -11,7 +11,7 @@ import static nicusha.gadget_lab.Main.MODID;
 public class CreativeTabRegistry {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = TABS.register("tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup." + MODID)).icon(() -> new ItemStack(ItemRegistry.pocket_watch.get())).build());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = TABS.register("tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup." + MODID)).icon(() -> new ItemStack(ItemRegistry.pocket_watch.asItem())).build());
 
 
 }

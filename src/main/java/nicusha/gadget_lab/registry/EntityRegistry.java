@@ -20,11 +20,11 @@ public class EntityRegistry {
 
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-    event.registerEntityRenderer(SMOKE_BOMB.get(), (Context context) -> new RenderSmokeBomb<>(context, new ResourceLocation(MODID,"textures/item/smoke_bomb.png")));
+    event.registerEntityRenderer(SMOKE_BOMB.get(), (Context context) -> new RenderSmokeBomb<>(context, ResourceLocation.fromNamespaceAndPath(MODID,"textures/item/smoke_bomb.png")));
     }
 
     private static final <T extends Projectile> DeferredHolder<EntityType<?>, EntityType<T>> registerProjectile(EntityType.EntityFactory<T> factory, String entityName, float width, float length) {
-        return ENTITIES.register(entityName, () -> EntityType.Builder.of(factory, MobCategory.MISC).sized(width, length).setTrackingRange(120).setUpdateInterval(20).build(new ResourceLocation(Main.MODID, entityName).getPath()));
+        return ENTITIES.register(entityName, () -> EntityType.Builder.of(factory, MobCategory.MISC).sized(width, length).setTrackingRange(120).setUpdateInterval(20).build(ResourceLocation.fromNamespaceAndPath(Main.MODID, entityName).getPath()));
     }
     private static final <T extends Projectile> DeferredHolder<EntityType<?>, EntityType<T>> registerProjectile(EntityType.EntityFactory<T> factory, String entityName) {
         return registerProjectile(factory, entityName, 0.25F, 0.25F);
