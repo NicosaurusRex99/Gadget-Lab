@@ -29,11 +29,11 @@ public class UnstableObsidian extends IceBlock {
     }
 
     public UnstableObsidian() {
-        super(Properties.ofFullCopy(Blocks.OBSIDIAN));
+        super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks());
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
     public UnstableObsidian(BlockBehaviour.Properties blockProperties) {
-        super(blockProperties);
+        super(blockProperties.randomTicks());
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
 
