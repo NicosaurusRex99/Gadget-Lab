@@ -21,6 +21,7 @@ public class ItemRegistry {
     public static final DeferredItem<Item> smoke_bomb = registerItem("smoke_bomb", () -> new SmokeBomb());
     public static final DeferredItem<Item> magnetic_glove = registerItem("magnetic_glove", () -> new MagneticGlove());
     public static final DeferredItem<Item> herbicide_spray = registerItem("herbicide_spray", () -> new HerbicideSpray());
+    public static final DeferredItem<Item> invisibility_cloak = registerItem("invisibility_cloak", () -> new InvisibilityCloak());
 
     private static <T extends Item> DeferredItem<T> registerItem(String registryId, Supplier<T> item) {
         return ITEMS.register(registryId, item);

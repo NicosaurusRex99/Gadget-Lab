@@ -22,6 +22,5 @@ Grenades. A grenade
 Flashbangs. A flash bang
 Grappling hook -
 Weather control device - toggles weather
-Charmeleon cloak - perma invisibility
 Ender compass - helps locate end structure
 Glider wings - slow fall

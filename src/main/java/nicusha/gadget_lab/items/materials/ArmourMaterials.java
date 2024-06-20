@@ -28,6 +28,13 @@ public class ArmourMaterials {
         armourType.put(ArmorItem.Type.HELMET, 0);
         armourType.put(ArmorItem.Type.BODY, 0);
     }), 0, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(Items.AIR));
+    public static final Holder<ArmorMaterial> INVISIBILITY_CLOAK = register("invisibility_cloak", Util.make(new EnumMap<>(ArmorItem.Type.class), armourType -> {
+        armourType.put(ArmorItem.Type.BOOTS, 0);
+        armourType.put(ArmorItem.Type.LEGGINGS, 0);
+        armourType.put(ArmorItem.Type.CHESTPLATE, 0);
+        armourType.put(ArmorItem.Type.HELMET, 0);
+        armourType.put(ArmorItem.Type.BODY, 0);
+    }), 0, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> Ingredient.of(Items.AIR));
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> armourType, int enchantability, Holder<SoundEvent> equipSound,
             float toughness, float knockbackResistance, Supplier<Ingredient> repair) {
