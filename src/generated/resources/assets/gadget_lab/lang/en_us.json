@@ -87,5 +87,5 @@
   "tooltip.item.gadget_lab.sun_dial": "Tells the time",
   "tooltip.item.gadget_lab.teleportation_wand": "Teleports 32 blocks in the direction the player is looking, if there is a block between the player and the look spot it teleports just infront or on top",
   "tooltip.item.gadget_lab.void_chest": "Voids all items placed inside",
-  "tooltip.wip.item.gadget_lab.enigmatic_hold": "Currently does not function"
+  "tooltip.wip.gadget_lab": "Currently does not function"
 }

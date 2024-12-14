@@ -74,7 +74,7 @@ public class LangGen implements DataProvider {
         translations.put("tooltip.item.gadget_lab.rebreather", "Allows you to swim faster and breath underwater for 5 minutes");
         translations.put("tooltip.item.gadget_lab.portable_crafting_table", "A portable crafting table");
         translations.put("tooltip.item.gadget_lab.enigmatic_hold", "Holds up-to 10 mobs and places them in the same order they were captured in");
-        translations.put("tooltip.wip.item.gadget_lab.enigmatic_hold", "Currently does not function");
+        translations.put("tooltip.wip.gadget_lab", "Currently does not function");
         translations.put("tooltip.item.gadget_lab.gravity_boots", "Jump higher and removes fall damage");
         translations.put("tooltip.item.gadget_lab.lucky_amulet", "Gives luck when in the players inventory");
         translations.put("tooltip.item.gadget_lab.fortune_amulet", "Gives fortune when in the players inventory");

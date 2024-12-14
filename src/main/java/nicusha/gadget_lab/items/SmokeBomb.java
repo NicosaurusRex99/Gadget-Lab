@@ -1,6 +1,8 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.*;
@@ -10,6 +12,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import nicusha.gadget_lab.entities.EntitySmokeBomb;
 import nicusha.gadget_lab.registry.EntityRegistry;
+
+import java.util.List;
 
 import static nicusha.gadget_lab.Main.MODID;
 
@@ -30,4 +34,9 @@ public class SmokeBomb extends ItemMod {
         return InteractionResult.SUCCESS;
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.wip." + MODID).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
+    }
 }

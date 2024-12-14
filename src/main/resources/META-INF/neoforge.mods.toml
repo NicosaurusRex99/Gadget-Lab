@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/NicosaurusRex99/Gadget-Lab/issues"
 
 [[mods]]
 modId="gadget_lab"
-version="1.0.7"
+version="1.0.5"
 displayName="Gadget Lab"
 updateJSONURL="https://raw.githubusercontent.com/NicosaurusRex99/Nicusha-mod-assets/main/gadget_lab_update.json"
 displayURL="https://legacy.curseforge.com/minecraft/mc-mods/gadget-lab"

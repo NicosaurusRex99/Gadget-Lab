@@ -1,5 +1,6 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -56,7 +57,7 @@ public class EnigmaticHold extends ItemMod {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.wip."+stack.getItem().getDescriptionId()));
+        tooltip.add(Component.translatable("tooltip.wip." + MODID).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
     }
 
 }
