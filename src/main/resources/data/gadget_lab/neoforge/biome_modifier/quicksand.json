@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:desert",
+  "features": [
+    "gadget_lab:quicksand"
+  ],
+  "step": "top_layer_modification"
+}

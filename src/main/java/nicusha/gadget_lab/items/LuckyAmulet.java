@@ -1,5 +1,8 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -10,11 +13,13 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 
 @EventBusSubscriber(modid = Main.MODID)
 public class LuckyAmulet extends ItemMod {
     public LuckyAmulet() {
-        super(new Item.Properties().durability(500));
+        super(new Item.Properties().durability(500).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "lucky_amulet"))));
     }
 
     @SubscribeEvent

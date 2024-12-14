@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="${loader_version_range}"
-license="${mod_license}"
+loaderVersion="[4,)"
+license="All Rights Reserved"
 issueTrackerURL="https://github.com/NicosaurusRex99/Gadget-Lab/issues"
 
 [[mods]]
-modId="${mod_id}"
-version="${mod_version}"
-displayName="${mod_name}"
+modId="gadget_lab"
+version="1.0.7"
+displayName="Gadget Lab"
 updateJSONURL="https://raw.githubusercontent.com/NicosaurusRex99/Nicusha-mod-assets/main/gadget_lab_update.json"
 displayURL="https://legacy.curseforge.com/minecraft/mc-mods/gadget-lab"
 logoFile="gadget_lab.png"

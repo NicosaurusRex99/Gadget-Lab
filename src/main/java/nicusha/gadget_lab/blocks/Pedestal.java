@@ -2,7 +2,10 @@ package nicusha.gadget_lab.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -18,13 +21,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 
 public class Pedestal extends BaseEntityBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_ITEM = BooleanProperty.create("has_item");
 
     public Pedestal() {
-        super(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BASALT).noOcclusion());
+        super(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BASALT).noOcclusion().setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "pedestal"))));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HAS_ITEM, false));
     }
 
@@ -34,7 +39,7 @@ public class Pedestal extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof PedestalBlockEntity) {
             PedestalBlockEntity pedestal = (PedestalBlockEntity) blockEntity;
@@ -94,6 +99,6 @@ public class Pedestal extends BaseEntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip."+stack.getDescriptionId()));
+        tooltip.add(Component.translatable("tooltip."+stack.getItem().getDescriptionId()));
     }
 }

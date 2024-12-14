@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gadget_lab:rebreather"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gadget_lab:rebreather"
+      }
+    ]
+  }
+}

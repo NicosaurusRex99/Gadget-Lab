@@ -3,21 +3,31 @@ package nicusha.gadget_lab.entities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 
 public class EntitySmokeBomb extends ThrowableProjectile {
     private static final double SMOKE_RADIUS = 5.0;
     private int smokeTicks = 1200;
+    LivingEntity owner;
 
     public EntitySmokeBomb(EntityType<? extends ThrowableProjectile> type, Level world) {
         super(type, world);
     }
 
     public EntitySmokeBomb(EntityType<? extends ThrowableProjectile> type, Level world, LivingEntity owner) {
-        super(type, owner, world);
+        super(type, world);
+        this.owner = owner;
+    }
+
+    @Override
+    public void applyOnProjectileSpawned(ServerLevel level, ItemStack spawnedFrom) {
+        if(owner!=null)setOwner(owner);
+        super.applyOnProjectileSpawned(level, spawnedFrom);
     }
 
     @Override
@@ -39,7 +49,7 @@ public class EntitySmokeBomb extends ThrowableProjectile {
         }
 
         if (this.smokeTicks <= 0) {
-            this.kill();
+            this.discard();
         }
     }
 

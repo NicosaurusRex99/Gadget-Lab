@@ -1,6 +1,9 @@
 package nicusha.gadget_lab.items;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -8,14 +11,16 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 public class TeleportationWand extends ItemMod {
 
     public TeleportationWand() {
-        super(new Item.Properties().durability(512));
+        super(new Item.Properties().durability(512).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "teleportation_wand"))));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResult use(Level world, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         int maxTeleportDistance = 32;
         double teleportDistance = 0;
@@ -44,6 +49,6 @@ public class TeleportationWand extends ItemMod {
             stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
         }
 
-        return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
+        return InteractionResult.SUCCESS;
     }
 }

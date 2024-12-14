@@ -3,6 +3,9 @@ package nicusha.gadget_lab.blocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -16,6 +19,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.redstone.Orientation;
+import org.jetbrains.annotations.Nullable;
+
+import static nicusha.gadget_lab.Main.MODID;
 
 public class UnstableObsidian extends IceBlock {
     public static final MapCodec<UnstableObsidian> CODEC = simpleCodec(UnstableObsidian::new);
@@ -29,7 +36,7 @@ public class UnstableObsidian extends IceBlock {
     }
 
     public UnstableObsidian() {
-        super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks());
+        super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks().setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "unstable_obsidian"))));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
     public UnstableObsidian(BlockBehaviour.Properties blockProperties) {
@@ -42,7 +49,7 @@ public class UnstableObsidian extends IceBlock {
     }
 
     public void tick(BlockState currentState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if ((randomSource.nextInt(3) == 0 || this.fewerNeigboursThan(serverLevel, blockPos, NEIGHBORS_TO_AGE)) && serverLevel.getMaxLocalRawBrightness(blockPos) > 11 - currentState.getValue(AGE) - currentState.getLightBlock(serverLevel, blockPos) && this.slightlyMelt(currentState, serverLevel, blockPos)) {
+        if ((randomSource.nextInt(3) == 0 || this.fewerNeigboursThan(serverLevel, blockPos, NEIGHBORS_TO_AGE)) && serverLevel.getMaxLocalRawBrightness(blockPos) > 11 - currentState.getValue(AGE) - currentState.getLightBlock() && this.slightlyMelt(currentState, serverLevel, blockPos)) {
             BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
             for(Direction direction : Direction.values()) {
@@ -60,9 +67,9 @@ public class UnstableObsidian extends IceBlock {
     public static BlockState meltsInto() {
         return Blocks.LAVA.defaultBlockState();
     }
-    protected void melt(BlockState blockState, Level level, BlockPos pos) {
+    protected void melt(BlockState blockState, Level level, BlockPos pos, Orientation orientation) {
             level.setBlockAndUpdate(pos, meltsInto());
-            level.neighborChanged(pos, meltsInto().getBlock(), pos);
+            level.neighborChanged(pos, meltsInto().getBlock(), orientation);
     }
     private boolean slightlyMelt(BlockState currentState, Level level, BlockPos blockPos) {
         int age = currentState.getValue(AGE);
@@ -75,12 +82,12 @@ public class UnstableObsidian extends IceBlock {
         }
     }
 
-    public void neighborChanged(BlockState currentState, Level level, BlockPos blockPos, Block neighborBlock, BlockPos neighborBlockPos, boolean isMoving) {
-        if (neighborBlock.defaultBlockState().is(this) && this.fewerNeigboursThan(level, blockPos, NEIGHBORS_TO_MELT)) {
-            this.melt(currentState, level, blockPos);
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
+        if (neighborBlock.defaultBlockState().is(this) && this.fewerNeigboursThan(level, pos, NEIGHBORS_TO_MELT)) {
+            this.melt(state, level, pos);
         }
-
-        super.neighborChanged(currentState, level, blockPos, neighborBlock, neighborBlockPos, isMoving);
+        super.neighborChanged(state, level, pos, neighborBlock, orientation, movedByPiston);
     }
 
     private boolean fewerNeigboursThan(BlockGetter blockGetter, BlockPos blockPos, int neighborCountThreshold) {

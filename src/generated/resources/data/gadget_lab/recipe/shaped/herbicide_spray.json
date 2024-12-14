@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:tripwire_hook",
+    "B": "minecraft:bucket",
+    "R": "minecraft:rotten_flesh"
+  },
+  "pattern": [
+    "#",
+    "R",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gadget_lab:herbicide_spray"
+  }
+}

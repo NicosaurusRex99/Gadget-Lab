@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:ender_pearl",
+    "/": "minecraft:blaze_rod",
+    "E": "minecraft:ender_eye"
+  },
+  "pattern": [
+    " #E",
+    " /#",
+    "/  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gadget_lab:teleportation_wand"
+  }
+}

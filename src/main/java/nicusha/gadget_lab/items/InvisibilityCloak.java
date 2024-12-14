@@ -1,9 +1,13 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -13,11 +17,13 @@ import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.util.List;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 @EventBusSubscriber(modid = Main.MODID)
 public class InvisibilityCloak extends ArmorItem {
 
     public InvisibilityCloak() {
-        super(ArmourMaterials.INVISIBILITY_CLOAK, Type.CHESTPLATE, new Item.Properties().stacksTo(1));
+        super(ArmourMaterials.INVISIBILITY_CLOAK, ArmorType.CHESTPLATE, new Item.Properties().stacksTo(1).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "invisibility_cloak"))));
     }
 
     @SubscribeEvent
@@ -30,6 +36,6 @@ public class InvisibilityCloak extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip." + stack.getDescriptionId()));
+        tooltip.add(Component.translatable("tooltip." + stack.getItem().getDescriptionId()));
     }
 }

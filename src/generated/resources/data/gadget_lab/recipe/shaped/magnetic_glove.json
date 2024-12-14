@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:red_dye",
+    "B": "minecraft:blue_dye",
+    "I": "minecraft:iron_nugget",
+    "i": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "#I ",
+    "iii",
+    " iB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gadget_lab:magnetic_glove"
+  }
+}

@@ -1,6 +1,9 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
@@ -9,9 +12,11 @@ import net.minecraft.world.item.context.UseOnContext;
 
 import java.util.*;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 public class EnigmaticHold extends ItemMod {
     public EnigmaticHold() {
-        super(new Properties().stacksTo(1));
+        super(new Properties().stacksTo(1).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "enigmatic_hold"))));
     }
 
     @Override
@@ -51,7 +56,7 @@ public class EnigmaticHold extends ItemMod {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.wip."+stack.getDescriptionId()));
+        tooltip.add(Component.translatable("tooltip.wip."+stack.getItem().getDescriptionId()));
     }
 
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:iron_bars",
+    "G": "minecraft:ghast_tear",
+    "O": "minecraft:glowstone_dust",
+    "S": "minecraft:stone_button"
+  },
+  "pattern": [
+    "#G#",
+    "OSO",
+    "#G#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gadget_lab:enigmatic_hold"
+  }
+}

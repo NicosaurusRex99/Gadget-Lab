@@ -1,11 +1,15 @@
 package nicusha.gadget_lab.items;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -15,10 +19,12 @@ import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.util.List;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 @EventBusSubscriber(modid = Main.MODID)
 public class Rebreather extends ArmorItem {
     public Rebreather() {
-        super(ArmourMaterials.REBREATHER, Type.HELMET, new Item.Properties().durability(6000));
+        super(ArmourMaterials.REBREATHER, ArmorType.HELMET, new Item.Properties().durability(6000).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "rebreather"))));
     }
 
     @SubscribeEvent
@@ -36,7 +42,7 @@ public class Rebreather extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag flag) {
-        components.add(Component.translatable("tooltip." + stack.getDescriptionId()));
+        components.add(Component.translatable("tooltip." + stack.getItem().getDescriptionId()));
     }
 
 }

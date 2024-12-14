@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:magenta_wool",
+    "P": "minecraft:piston",
+    "S": "minecraft:slime_block"
+  },
+  "pattern": [
+    "#S#",
+    "#P#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gadget_lab:gravity_boots"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "gadget_lab:item/teleportation_wand"
-  }
-}

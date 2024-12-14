@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "gadget_lab:item/portable_crafting_table"
-  }
-}

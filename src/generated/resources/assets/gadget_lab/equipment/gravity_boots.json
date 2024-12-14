@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gadget_lab:gravity_boots"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gadget_lab:gravity_boots"
+      }
+    ]
+  }
+}

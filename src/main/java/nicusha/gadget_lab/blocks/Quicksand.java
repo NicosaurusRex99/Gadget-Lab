@@ -4,7 +4,9 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.*;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -21,6 +23,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
 import nicusha.gadget_lab.Main;
 
+import static nicusha.gadget_lab.Main.MODID;
+
 
 public class Quicksand extends FallingBlock {
     public static final MapCodec<Quicksand> CODEC = simpleCodec(Quicksand::new);
@@ -31,7 +35,7 @@ public class Quicksand extends FallingBlock {
     }
 
     public Quicksand() {
-        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
+        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "quicksand"))));
     }
     public Quicksand(Properties properties) {
         super(properties);
@@ -58,7 +62,7 @@ public class Quicksand extends FallingBlock {
         }
 
         if (!level.isClientSide) {
-            if (entity.isOnFire() && (level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || entity instanceof Player) && entity.mayInteract(level, pos)) {
+            if (entity.isOnFire() && (level.getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || entity instanceof Player) && entity.mayInteract((ServerLevel) level, pos)) {
                 level.destroyBlock(pos, false);
             }
 

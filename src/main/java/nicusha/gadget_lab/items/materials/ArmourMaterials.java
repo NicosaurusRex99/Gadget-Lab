@@ -1,54 +1,109 @@
 package nicusha.gadget_lab.items.materials;
 
-import net.minecraft.Util;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
-import nicusha.gadget_lab.Main;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 
 import java.util.*;
-import java.util.function.Supplier;
 
-public class ArmourMaterials {
+import static nicusha.gadget_lab.Main.MODID;
 
-    public static final Holder<ArmorMaterial> GRAVITY_BOOTS = register("gravity_boots", Util.make(new EnumMap<>(ArmorItem.Type.class), armourType -> {
-        armourType.put(ArmorItem.Type.BOOTS, 1);
-        armourType.put(ArmorItem.Type.LEGGINGS, 0);
-        armourType.put(ArmorItem.Type.CHESTPLATE, 0);
-        armourType.put(ArmorItem.Type.HELMET, 0);
-        armourType.put(ArmorItem.Type.BODY, 0);
-    }), 0, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(Items.SLIME_BALL));
-    public static final Holder<ArmorMaterial> REBREATHER = register("rebreather", Util.make(new EnumMap<>(ArmorItem.Type.class), armourType -> {
-        armourType.put(ArmorItem.Type.BOOTS, 0);
-        armourType.put(ArmorItem.Type.LEGGINGS, 0);
-        armourType.put(ArmorItem.Type.CHESTPLATE, 0);
-        armourType.put(ArmorItem.Type.HELMET, 0);
-        armourType.put(ArmorItem.Type.BODY, 0);
-    }), 0, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(Items.AIR));
-    public static final Holder<ArmorMaterial> INVISIBILITY_CLOAK = register("invisibility_cloak", Util.make(new EnumMap<>(ArmorItem.Type.class), armourType -> {
-        armourType.put(ArmorItem.Type.BOOTS, 0);
-        armourType.put(ArmorItem.Type.LEGGINGS, 0);
-        armourType.put(ArmorItem.Type.CHESTPLATE, 0);
-        armourType.put(ArmorItem.Type.HELMET, 0);
-        armourType.put(ArmorItem.Type.BODY, 0);
-    }), 0, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> Ingredient.of(Items.AIR));
+public interface ArmourMaterials {
 
-    private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> armourType, int enchantability, Holder<SoundEvent> equipSound,
-            float toughness, float knockbackResistance, Supplier<Ingredient> repair) {
-        List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Main.MODID, name)));
-        return register(name, armourType, enchantability, equipSound, toughness, knockbackResistance, repair, list);
+    ArmorMaterial GRAVITY_BOOTS = registerArmorMaterial(
+            "gravity_boots", 0,
+            createDefenseMap(1, 0, 0, 0, 0),
+            1, SoundEvents.ARMOR_EQUIP_IRON,
+            0.0F, 0.0F,
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(MODID, "slime_ball_repair"))
+    );
+
+    ArmorMaterial REBREATHER = registerArmorMaterial(
+            "rebreather", 0,
+            createDefenseMap(0, 0, 0, 0, 0),
+            1, SoundEvents.ARMOR_EQUIP_CHAIN,
+            0.0F, 0.0F,
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(MODID, "air_repair"))
+    );
+
+    ArmorMaterial INVISIBILITY_CLOAK = registerArmorMaterial(
+            "invisibility_cloak", 0,
+            createDefenseMap(0, 0, 0, 0, 0),
+            1, SoundEvents.ARMOR_EQUIP_GENERIC,
+            0.0F, 0.0F,
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(MODID, "air_repair"))
+    );
+
+    static ResourceKey<EquipmentAsset> createId(String name) {
+        return ResourceKey.create(EquipmentAssets.ROOT_ID, ResourceLocation.fromNamespaceAndPath(MODID, name));
     }
 
-    private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> armourType, int enchantability, Holder<SoundEvent> equipSound,
-        float toughness, float knockbackResistance, Supplier<Ingredient> repair, List<ArmorMaterial.Layer> pLayers) {
-        EnumMap<ArmorItem.Type, Integer> enummap = new EnumMap<>(ArmorItem.Type.class);
-        for (ArmorItem.Type armoritem$type : ArmorItem.Type.values()) {
-            enummap.put(armoritem$type, armourType.get(armoritem$type));
+    static EnumMap<ArmorType, Integer> createDefenseMap(int boots, int leggings, int chestplate, int helmet, int body) {
+        EnumMap<ArmorType, Integer> defenseMap = new EnumMap<>(ArmorType.class);
+        defenseMap.put(ArmorType.BOOTS, boots);
+        defenseMap.put(ArmorType.LEGGINGS, leggings);
+        defenseMap.put(ArmorType.CHESTPLATE, chestplate);
+        defenseMap.put(ArmorType.HELMET, helmet);
+        defenseMap.put(ArmorType.BODY, body);
+        return defenseMap;
+    }
+
+    private static ArmorMaterial registerArmorMaterial(
+            String name,
+            int durability,
+            EnumMap<ArmorType, Integer> defenseMap,
+            int enchantmentValue,
+            Holder<SoundEvent> equipSound,
+            float toughness,
+            float knockbackResistance,
+            TagKey<Item> repairIngredient
+    ) {
+        return createArmorMaterial(
+                durability,
+                defenseMap,
+                enchantmentValue,
+                equipSound,
+                toughness,
+                knockbackResistance,
+                repairIngredient,
+                createId(name)
+        );
+    }
+
+    private static ArmorMaterial createArmorMaterial(
+            int durability,
+            EnumMap<ArmorType, Integer> defenseMap,
+            int enchantmentValue,
+            Holder<SoundEvent> equipSound,
+            float toughness,
+            float knockbackResistance,
+            TagKey<Item> repairIngredient,
+            ResourceKey<EquipmentAsset> assetKey
+    ) {
+        EnumMap<ArmorType, Integer> mappedDefense = new EnumMap<>(ArmorType.class);
+
+        for (ArmorType type : ArmorType.values()) {
+            mappedDefense.put(type, defenseMap.get(type));
         }
-        return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, ResourceLocation.fromNamespaceAndPath(Main.MODID, name), new ArmorMaterial(enummap, enchantability, equipSound, repair, pLayers, toughness, knockbackResistance)
+
+        return new ArmorMaterial(
+                durability,
+                mappedDefense,
+                enchantmentValue,
+                equipSound,
+                toughness,
+                knockbackResistance,
+                repairIngredient,
+                assetKey
         );
     }
 }

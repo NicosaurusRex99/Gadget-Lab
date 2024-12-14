@@ -51,5 +51,4 @@ public class Main
                 event.accept(regObj.get());
             }
     }
-
 }
