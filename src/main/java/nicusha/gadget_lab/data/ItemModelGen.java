@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.blocks.LaunchPad;
 import nicusha.gadget_lab.blocks.Pedestal;
 import nicusha.gadget_lab.blocks.UnstableObsidian;
@@ -17,7 +17,7 @@ import nicusha.gadget_lab.registry.ItemRegistry;
 public class ItemModelGen extends net.neoforged.neoforge.client.model.generators.ItemModelProvider {
     private PackOutput packOutput;
     public ItemModelGen(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
-        super(packOutput, Main.MODID, existingFileHelper);
+        super(packOutput, GadgetLab.MODID, existingFileHelper);
         this.packOutput = packOutput;
     }
 
@@ -48,31 +48,31 @@ public class ItemModelGen extends net.neoforged.neoforge.client.model.generators
 
     private ItemModelBuilder generated(ResourceLocation itemId) {
         return withExistingParent("item/" + itemId.getPath(), ResourceLocation.parse("item/generated"))
-                .texture("layer0", ResourceLocation.fromNamespaceAndPath(Main.MODID, "item/" + itemId.getPath()));
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "item/" + itemId.getPath()));
     }
 
     private ItemModelBuilder handheld(ResourceLocation itemId) {
         return withExistingParent("item/" + itemId.getPath(), ResourceLocation.parse("item/handheld"))
-                .texture("layer0", ResourceLocation.fromNamespaceAndPath(Main.MODID, "item/" + itemId.getPath()));
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "item/" + itemId.getPath()));
     }
 
     private ItemModelBuilder custom(String item, String parentModel, String texture) {
         return withExistingParent("item/" + item, ResourceLocation.parse(parentModel))
-                .texture("layer0", ResourceLocation.fromNamespaceAndPath(Main.MODID, "item/" + texture));
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "item/" + texture));
     }
 
     private ItemModelBuilder customParent(String item, String parentModel) {
-        return withExistingParent("item/" + item, ResourceLocation.fromNamespaceAndPath(Main.MODID, parentModel));
+        return withExistingParent("item/" + item, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, parentModel));
     }
 
     private ItemModelBuilder simpleBlock(ResourceLocation itemId) {
         return withExistingParent("block/" + itemId.getPath(), ResourceLocation.parse("block/cube_all"))
-                .texture("all", ResourceLocation.fromNamespaceAndPath(Main.MODID, "block/" + itemId.getPath()));
+                .texture("all", ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "block/" + itemId.getPath()));
     }
 
     private ItemModelBuilder simpleBlockReg(ResourceLocation itemId) {
         return withExistingParent("item/" + itemId.getPath(), ResourceLocation.parse("block/cube_all"))
-                .texture("all", ResourceLocation.fromNamespaceAndPath(Main.MODID, "block/" + itemId.getPath()));
+                .texture("all", ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "block/" + itemId.getPath()));
     }
 
 }

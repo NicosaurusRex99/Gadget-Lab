@@ -16,7 +16,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class LaunchPad extends Block {
     private static final VoxelShape SHAPE = Shapes.or(Block.box(2, 0, 2, 14, 1, 14), Block.box(5, 1, 5, 11, 2, 11), Block.box(4, 1, 4, 12, 2, 12));

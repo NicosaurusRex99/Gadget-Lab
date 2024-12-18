@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.*;
 
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class CreativeTabRegistry {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);

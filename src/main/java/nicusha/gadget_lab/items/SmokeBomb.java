@@ -15,7 +15,7 @@ import nicusha.gadget_lab.registry.EntityRegistry;
 
 import java.util.List;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class SmokeBomb extends ItemMod {
     public SmokeBomb() {

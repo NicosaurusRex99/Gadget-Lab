@@ -1,7 +1,6 @@
 package nicusha.gadget_lab.registry;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,14 +11,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.registries.*;
-import nicusha.gadget_lab.Main;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 import nicusha.gadget_lab.blocks.*;
 import nicusha.gadget_lab.client.PedestalBlockRenderer;
 
 import java.util.function.Supplier;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class BlockRegistry {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);

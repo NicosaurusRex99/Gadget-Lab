@@ -13,7 +13,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.data.loot.LootGenerator;
 import nicusha.gadget_lab.data.recipe.runner.CraftingGeneratorRunner;
 import nicusha.gadget_lab.data.tag.BlockTagGen;
@@ -22,7 +22,7 @@ import nicusha.gadget_lab.data.tag.ItemTagGen;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = GadgetLab.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class GadgetLabDataGenerator {
 
     @SubscribeEvent

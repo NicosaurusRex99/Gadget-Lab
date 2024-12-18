@@ -7,7 +7,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.BlockRegistry;
 import nicusha.gadget_lab.registry.EntityRegistry;
 import nicusha.gadget_lab.registry.ItemRegistry;
@@ -46,7 +46,7 @@ public class LangGen implements DataProvider {
         BlockRegistry.BLOCKS.getEntries().forEach(regObj -> {
             ResourceLocation blockId = regObj.getId();
             translations.put(
-                    "block." + Main.MODID + "." + blockId.getPath(),
+                    "block." + GadgetLab.MODID + "." + blockId.getPath(),
                     generateLocalizedNameFromPath(blockId.getPath())
             );
         });
@@ -54,7 +54,7 @@ public class LangGen implements DataProvider {
         ItemRegistry.ITEMS.getEntries().forEach(regObj -> {
             ResourceLocation itemId = regObj.getId();
             translations.put(
-                    "item." + Main.MODID + "." + itemId.getPath(),
+                    "item." + GadgetLab.MODID + "." + itemId.getPath(),
                     generateLocalizedNameFromPath(itemId.getPath())
             );
         });
@@ -62,7 +62,7 @@ public class LangGen implements DataProvider {
         EntityRegistry.ENTITIES.getEntries().forEach(regObj -> {
             ResourceLocation entityId = regObj.getId();
             translations.put(
-                    "entity." + Main.MODID + "." + entityId.getPath(),
+                    "entity." + GadgetLab.MODID + "." + entityId.getPath(),
                     generateLocalizedNameFromPath(entityId.getPath())
             );
         });
@@ -114,7 +114,7 @@ public class LangGen implements DataProvider {
 
     private Path getTranslationPath(String language) {
         return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve(Main.MODID)
+                .resolve(GadgetLab.MODID)
                 .resolve("lang")
                 .resolve(language + ".json");
     }

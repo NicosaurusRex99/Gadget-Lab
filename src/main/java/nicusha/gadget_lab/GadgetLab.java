@@ -10,13 +10,13 @@ import nicusha.gadget_lab.events.*;
 import nicusha.gadget_lab.registry.*;
 import org.slf4j.Logger;
 
-@Mod(Main.MODID)
-public class Main
+@Mod(GadgetLab.MODID)
+public class GadgetLab
 {
     public static final String MODID = "gadget_lab";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public Main(IEventBus bus)
+    public GadgetLab(IEventBus bus)
     {
         bus.addListener(this::common);
         bus.addListener(this::client);

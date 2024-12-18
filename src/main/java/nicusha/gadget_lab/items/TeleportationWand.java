@@ -11,7 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class TeleportationWand extends ItemMod {
 

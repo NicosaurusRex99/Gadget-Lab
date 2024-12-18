@@ -8,10 +8,9 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class PortableCraftingTable extends ItemMod {
     public PortableCraftingTable() {

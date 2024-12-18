@@ -4,8 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.entity.state.ThrownItemRenderState;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +11,7 @@ import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.client.state.SmokeBombRenderState;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
@@ -25,7 +23,7 @@ public class RenderSmokeBomb<T extends ThrowableProjectile> extends EntityRender
     private final ItemModelResolver itemModelResolver;
 
     public RenderSmokeBomb(final Context context, final String name) {
-        this(context, ResourceLocation.fromNamespaceAndPath(Main.MODID, "textures/projectiles/" + name + ".png"));
+        this(context, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "textures/projectiles/" + name + ".png"));
     }
     public RenderSmokeBomb(final Context context) {
         this(context, ResourceLocation.withDefaultNamespace("textures/particle/generic_0.png"));

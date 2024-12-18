@@ -10,15 +10,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.BlockRegistry;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.util.concurrent.CompletableFuture;
 
 public class ItemTagGen extends ItemTagsProvider {
-    public static final TagKey<Item> SLIME_REPAIR = create(Main.MODID, "slime_ball_repair");
-    public static final TagKey<Item> AIR_REPAIR = create(Main.MODID, "air_repair");
+    public static final TagKey<Item> SLIME_REPAIR = create(GadgetLab.MODID, "slime_ball_repair");
+    public static final TagKey<Item> AIR_REPAIR = create(GadgetLab.MODID, "air_repair");
     public static final TagKey<Item> CHARM = create("curious", "charm");
     public static final TagKey<Item> HANDS = create("curious", "hands");
     public static final TagKey<Item> NECKLACE = create("curious", "necklace");
@@ -27,7 +27,7 @@ public class ItemTagGen extends ItemTagsProvider {
     public static final TagKey<Item> TRIMMABLE_ARMOR = create("minecraft", "trimmable_armor");
 
     public ItemTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, ExistingFileHelper helper) {
-        super(output, future, provider, Main.MODID, helper);
+        super(output, future, provider, GadgetLab.MODID, helper);
     }
 
     @Override

@@ -11,15 +11,15 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.items.materials.ArmourMaterials;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.util.List;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
-@EventBusSubscriber(modid = Main.MODID)
+@EventBusSubscriber(modid = GadgetLab.MODID)
 public class InvisibilityCloak extends ArmorItem {
 
     public InvisibilityCloak() {

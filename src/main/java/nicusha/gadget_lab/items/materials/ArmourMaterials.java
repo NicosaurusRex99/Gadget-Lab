@@ -15,7 +15,7 @@ import net.minecraft.world.item.equipment.EquipmentAssets;
 
 import java.util.*;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public interface ArmourMaterials {
 

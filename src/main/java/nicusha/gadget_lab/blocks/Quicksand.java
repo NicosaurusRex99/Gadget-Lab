@@ -21,9 +21,9 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 
 public class Quicksand extends FallingBlock {
@@ -99,7 +99,7 @@ public class Quicksand extends FallingBlock {
     }
 
     public static boolean canEntityWalkOnQuicksand(Entity entity) {
-        return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Main.MODID, "entity_walk_on_quicksand")));
+        return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "entity_walk_on_quicksand")));
     }
 
     @Override

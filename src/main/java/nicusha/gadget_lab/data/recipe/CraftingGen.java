@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.BlockRegistry;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
@@ -62,7 +62,7 @@ public class CraftingGen extends RecipeProvider {
     }
 
     protected ResourceKey<Recipe<?>> createRecipeKey(String name) {
-        return ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(Main.MODID, name));
+        return ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, name));
     }
 
     // Shaped Recipe Template

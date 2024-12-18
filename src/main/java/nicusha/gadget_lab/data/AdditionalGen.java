@@ -8,7 +8,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class AdditionalGen implements DataProvider {
 
         JsonObject modelObject = new JsonObject();
         modelObject.addProperty("type", "minecraft:model");
-        modelObject.addProperty("model", Main.MODID + ":" + (itemId.getPath().startsWith("block/") ? "block/" : "item/") + itemId.getPath());
+        modelObject.addProperty("model", GadgetLab.MODID + ":" + (itemId.getPath().startsWith("block/") ? "block/" : "item/") + itemId.getPath());
         root.add("model", modelObject);
 
 
@@ -57,7 +57,7 @@ public class AdditionalGen implements DataProvider {
 
     private Path getItemModelPath(ResourceLocation itemId) {
         return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve(Main.MODID)
+                .resolve(GadgetLab.MODID)
                 .resolve("items")
                 .resolve(itemId.getPath() + ".json");
     }
@@ -67,12 +67,12 @@ public class AdditionalGen implements DataProvider {
         JsonObject layers = new JsonObject();
         JsonArray humanoidLayerArray = new JsonArray();
         JsonObject humanoidLayer = new JsonObject();
-        humanoidLayer.addProperty("texture", Main.MODID + ":" + equipmentId);
+        humanoidLayer.addProperty("texture", GadgetLab.MODID + ":" + equipmentId);
         humanoidLayerArray.add(humanoidLayer);
         layers.add("humanoid", humanoidLayerArray);
         JsonArray humanoidLeggingsLayerArray = new JsonArray();
         JsonObject humanoidLeggingsLayer = new JsonObject();
-        humanoidLeggingsLayer.addProperty("texture", Main.MODID + ":" + equipmentId);
+        humanoidLeggingsLayer.addProperty("texture", GadgetLab.MODID + ":" + equipmentId);
         humanoidLeggingsLayerArray.add(humanoidLeggingsLayer);
         layers.add("humanoid_leggings", humanoidLeggingsLayerArray);
         root.add("layers", layers);
@@ -97,7 +97,7 @@ public class AdditionalGen implements DataProvider {
 
     private Path getEquipmentModelPath(String equipmentId) {
         return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve(Main.MODID)
+                .resolve(GadgetLab.MODID)
                 .resolve("equipment")
                 .resolve(equipmentId + ".json");
     }

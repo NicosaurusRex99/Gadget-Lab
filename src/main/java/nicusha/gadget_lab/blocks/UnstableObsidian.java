@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import org.jetbrains.annotations.Nullable;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class UnstableObsidian extends IceBlock {
     public static final MapCodec<UnstableObsidian> CODEC = simpleCodec(UnstableObsidian::new);

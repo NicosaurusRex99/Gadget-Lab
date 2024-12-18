@@ -6,7 +6,7 @@ import net.neoforged.neoforge.registries.*;
 
 import java.util.function.Supplier;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class EnchantmentRegistry {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(Registries.ENCHANTMENT, MODID);

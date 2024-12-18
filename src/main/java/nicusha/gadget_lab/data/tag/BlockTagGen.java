@@ -10,7 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.BlockRegistry;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,7 +22,7 @@ public class BlockTagGen extends IntrinsicHolderTagsProvider<Block> {
     public static final TagKey<Block> SAND = createModded("minecraft","sand");
 
     public BlockTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper) {
-        super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), Main.MODID, helper);
+        super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), GadgetLab.MODID, helper);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class BlockTagGen extends IntrinsicHolderTagsProvider<Block> {
     }
 
     public static TagKey<Block> create(String tagName) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MODID, tagName));
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, tagName));
     }
 
     public static TagKey<Block> makeCommonTag(String tagName) {

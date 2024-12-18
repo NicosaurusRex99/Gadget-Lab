@@ -13,18 +13,16 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.items.materials.ArmourMaterials;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
 import java.util.List;
 
-import static nicusha.gadget_lab.Main.MODID;
-
-@EventBusSubscriber(modid = Main.MODID)
+@EventBusSubscriber(modid = GadgetLab.MODID)
 public class Rebreather extends ArmorItem {
     public Rebreather() {
-        super(ArmourMaterials.REBREATHER, ArmorType.HELMET, new Item.Properties().durability(6000).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "rebreather"))));
+        super(ArmourMaterials.REBREATHER, ArmorType.HELMET, new Item.Properties().durability(6000).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "rebreather"))));
     }
 
     @SubscribeEvent
@@ -33,7 +31,7 @@ public class Rebreather extends ArmorItem {
         if (player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistry.rebreather.asItem())) {
             if (player.isInWater()) {
                 ItemStack itemStack = player.getItemBySlot(EquipmentSlot.HEAD);
-                itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                itemStack.setDamageValue(itemStack.getDamageValue() - 1);
                 player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 3, 0, false, false));
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3, 0, false, false));
             }

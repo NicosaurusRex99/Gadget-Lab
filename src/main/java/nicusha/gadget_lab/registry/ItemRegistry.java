@@ -9,7 +9,7 @@ import nicusha.gadget_lab.items.*;
 
 import java.util.function.Supplier;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class ItemRegistry {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);

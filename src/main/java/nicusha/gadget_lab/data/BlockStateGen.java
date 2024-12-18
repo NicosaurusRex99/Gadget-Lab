@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import nicusha.gadget_lab.Main;
+import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.blocks.LaunchPad;
 import nicusha.gadget_lab.blocks.Pedestal;
 import nicusha.gadget_lab.blocks.UnstableObsidian;
@@ -18,7 +18,7 @@ import java.util.Objects;
 public class BlockStateGen extends BlockStateProvider {
 
     public BlockStateGen(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
-        super(packOutput, Main.MODID, existingFileHelper);
+        super(packOutput, GadgetLab.MODID, existingFileHelper);
     }
 
     @Override
@@ -31,6 +31,6 @@ public class BlockStateGen extends BlockStateProvider {
     }
 
     private void blockItem(ResourceLocation blockRegistryObject) {
-        simpleBlock(BuiltInRegistries.BLOCK.get(blockRegistryObject).get().value(), new ModelFile.UncheckedModelFile(Main.MODID + ":block/"+ Objects.requireNonNull(blockRegistryObject).getPath()));
+        simpleBlock(BuiltInRegistries.BLOCK.get(blockRegistryObject).get().value(), new ModelFile.UncheckedModelFile(GadgetLab.MODID + ":block/"+ Objects.requireNonNull(blockRegistryObject).getPath()));
     }
 }

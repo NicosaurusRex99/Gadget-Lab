@@ -13,7 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 
 import java.util.*;
 
-import static nicusha.gadget_lab.Main.MODID;
+import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class EnigmaticHold extends ItemMod {
     public EnigmaticHold() {
