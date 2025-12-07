@@ -18,9 +18,6 @@ public class Main
 
     public Main(IEventBus bus)
     {
-        bus.addListener(this::common);
-        bus.addListener(this::client);
-
         BlockRegistry.BLOCKS.register(bus);
         ItemRegistry.ITEMS.register(bus);
         BlockRegistry.BLOCK_ENTITIES.register(bus);
@@ -31,7 +28,9 @@ public class Main
         SoundRegistry.SOUNDS.register(bus);
 
         bus.addListener(this::addCreative);
-        bus.addListener(EntityRegistry::registerRenderers);
+        bus.register(EntityRegistry.class);
+        bus.addListener(this::common);
+        bus.addListener(this::client);
 
     }
 
