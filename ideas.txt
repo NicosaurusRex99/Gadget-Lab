@@ -1,3 +1,4 @@
+## Blocks
 Energy Transmitter block. Wirelessly power machines in a small radius at the cost of some power
 Growth Accelerator. Speeds up growth of crops in a 3x3x1 area (maybe add variants of this for more range?)
 Void Chest. Deletes excess items
@@ -13,6 +14,9 @@ Slime Siphon. if a slime is ontop of this block it would collect slimeballs over
 Fishermans net. a block that gathers and stores stuff you can get from fishing.
 Sun Dial. when right clicked it tells time, just an aesthetic block
 Aurora shield - repels all hostile mobs within 32 blocks
+Custom trapdoors - Carpet? possibly any block?
+
+## Items
 
 Harvesting gloves. Enhances crop yield
 Climbing gloves. allows you to climb 3 blocks high
@@ -24,3 +28,11 @@ Grappling hook -
 Weather control device - toggles weather
 Ender compass - helps locate end structure
 Glider wings - slow fall
+Wolf Whistle - Calls all sitting wolves
+
+## Structures
+Healing altar type thing?
+random 9x9
+Rain dance altar?
+
+## Entities

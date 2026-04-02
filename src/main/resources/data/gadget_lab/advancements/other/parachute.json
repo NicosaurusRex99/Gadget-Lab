@@ -1,0 +1,36 @@
+{
+  "parent": "gadget_lab:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:feather"
+    },
+    "title": {
+      "text": "Leave Home Without a Parachute"
+    },
+    "description": {
+      "text": "I thought you were gonna catch me.\n\n"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "hard_landing": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "type": {
+            "is_fall": true
+          },
+          "dealt": {
+            "min": 20.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [ "hard_landing" ]
+  ]
+}
