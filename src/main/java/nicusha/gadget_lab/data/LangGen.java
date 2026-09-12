@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.BlockRegistry;
 import nicusha.gadget_lab.registry.EntityRegistry;
@@ -44,7 +44,7 @@ public class LangGen implements DataProvider {
 
     private void addTranslations() {
         BlockRegistry.BLOCKS.getEntries().forEach(regObj -> {
-            ResourceLocation blockId = regObj.getId();
+            Identifier blockId = regObj.getId();
             translations.put(
                     "block." + GadgetLab.MODID + "." + blockId.getPath(),
                     generateLocalizedNameFromPath(blockId.getPath())
@@ -52,7 +52,7 @@ public class LangGen implements DataProvider {
         });
 
         ItemRegistry.ITEMS.getEntries().forEach(regObj -> {
-            ResourceLocation itemId = regObj.getId();
+            Identifier itemId = regObj.getId();
             translations.put(
                     "item." + GadgetLab.MODID + "." + itemId.getPath(),
                     generateLocalizedNameFromPath(itemId.getPath())
@@ -60,7 +60,7 @@ public class LangGen implements DataProvider {
         });
 
         EntityRegistry.ENTITIES.getEntries().forEach(regObj -> {
-            ResourceLocation entityId = regObj.getId();
+            Identifier entityId = regObj.getId();
             translations.put(
                     "entity." + GadgetLab.MODID + "." + entityId.getPath(),
                     generateLocalizedNameFromPath(entityId.getPath())
@@ -74,6 +74,7 @@ public class LangGen implements DataProvider {
         translations.put("tooltip.item.gadget_lab.rebreather", "Allows you to swim faster and breath underwater for 5 minutes");
         translations.put("tooltip.item.gadget_lab.portable_crafting_table", "A portable crafting table");
         translations.put("tooltip.item.gadget_lab.enigmatic_hold", "Holds up-to 10 mobs and places them in the same order they were captured in");
+        translations.put("tooltip.item.gadget_lab.enigmatic_hold.full", "Enigmatic Hold is full! (10/10)");
         translations.put("tooltip.wip.gadget_lab", "Currently does not function");
         translations.put("tooltip.item.gadget_lab.gravity_boots", "Jump higher and removes fall damage");
         translations.put("tooltip.item.gadget_lab.lucky_amulet", "Gives luck when in the players inventory");
@@ -123,9 +124,7 @@ public class LangGen implements DataProvider {
         String[] words = path.split("_");
         StringBuilder localizedName = new StringBuilder();
         for (String word : words) {
-            localizedName.append(word.substring(0, 1).toUpperCase())
-                    .append(word.substring(1).toLowerCase())
-                    .append(" ");
+            localizedName.append(word.substring(0, 1).toUpperCase()).append(word.substring(1).toLowerCase()).append(" ");
         }
         return localizedName.toString().trim();
     }

@@ -5,32 +5,36 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.*;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
-import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 
 import static nicusha.gadget_lab.GadgetLab.MODID;
-
 
 public class Pedestal extends BaseEntityBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_ITEM = BooleanProperty.create("has_item");
+    public static final MapCodec<Pedestal> CODEC = simpleCodec(Pedestal::new);
 
     public Pedestal() {
-        super(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BASALT).noOcclusion().setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "pedestal"))));
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HAS_ITEM, false));
+        this(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BASALT).noOcclusion().setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "pedestal"))));
     }
 
     public Pedestal(Properties properties) {
@@ -39,13 +43,31 @@ public class Pedestal extends BaseEntityBlock {
     }
 
     @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof PedestalBlockEntity) {
-            PedestalBlockEntity pedestal = (PedestalBlockEntity) blockEntity;
-            pedestal.interact(player);
+        if (!level.isClientSide()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof PedestalBlockEntity pedestal) {
+                pedestal.interact(player);
+                return InteractionResult.SUCCESS;
+            }
         }
-        return super.useItemOn(stack, state, level, pos, player, hand, result);
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
+        if (!oldState.is(newState.getBlock())) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof PedestalBlockEntity pedestal) {
+                pedestal.dropItem(pedestal.getLevel(), pos);
+            }
+        }
+        super.onBlockStateChange(level, pos, oldState, newState);
     }
 
     @Override
@@ -56,27 +78,7 @@ public class Pedestal extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockPos pos = context.getClickedPos();
-        Level world = context.getLevel();
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        boolean hasItem = false;
-        if (blockEntity instanceof PedestalBlockEntity) {
-            hasItem = ((PedestalBlockEntity) blockEntity).hasItem();
-        }
-        return this.defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection())
-                .setValue(HAS_ITEM, hasItem);
-    }
-
-    @Override
-    public void onRemove(BlockState state, net.minecraft.world.level.Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof PedestalBlockEntity) {
-                ((PedestalBlockEntity)tileEntity).dropItem(world, pos);
-            }
-        }
-        super.onRemove(state, world, pos, newState, isMoving);
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Nullable
@@ -85,20 +87,9 @@ public class Pedestal extends BaseEntityBlock {
         return new PedestalBlockEntity(pos, state);
     }
 
-    public static final MapCodec<Pedestal> CODEC = simpleCodec(Pedestal::new);
-
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip."+stack.getItem().getDescriptionId()));
-    }
 }

@@ -1,7 +1,7 @@
 package nicusha.gadget_lab.registry;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,6 +20,6 @@ public class SoundRegistry {
     }
 
     private static SoundEvent createSoundEvent(String soundPath) {
-        return SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, soundPath));
+        return SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(MODID, soundPath));
     }
 }

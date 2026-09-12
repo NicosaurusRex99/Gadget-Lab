@@ -4,13 +4,14 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.*;
 import nicusha.gadget_lab.GadgetLab;
+import nicusha.gadget_lab.component.CapturedMobsComponent;
 import nicusha.gadget_lab.component.MobFromUUIDComponent;
+
+import java.util.function.Supplier;
 
 public class DataComponentRegistry {
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, GadgetLab.MODID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<MobFromUUIDComponent>> SELECTED_MOB = COMPONENTS.register("selected_mob", () -> new DataComponentType.Builder<MobFromUUIDComponent>().persistent(MobFromUUIDComponent.ENTITY_ID_COMPONENT_CODEC).networkSynchronized(MobFromUUIDComponent.STREAM_ENTITY_ID).build());
+    public static final Supplier<DataComponentType<CapturedMobsComponent>> CAPTURED_MOBS = COMPONENTS.register("captured_mobs", () -> DataComponentType.<CapturedMobsComponent>builder().persistent(CapturedMobsComponent.CODEC).networkSynchronized(CapturedMobsComponent.STREAM_CODEC).build());
+
 }
-
-
-

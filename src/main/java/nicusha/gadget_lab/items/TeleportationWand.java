@@ -3,9 +3,8 @@ package nicusha.gadget_lab.items;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -16,7 +15,7 @@ import static nicusha.gadget_lab.GadgetLab.MODID;
 public class TeleportationWand extends ItemMod {
 
     public TeleportationWand() {
-        super(new Item.Properties().durability(512).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "teleportation_wand"))));
+        super(new Item.Properties().durability(512).setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MODID, "teleportation_wand"))));
     }
 
     @Override
@@ -25,12 +24,10 @@ public class TeleportationWand extends ItemMod {
         int maxTeleportDistance = 32;
         double teleportDistance = 0;
         double maxTeleportDistanceSq = maxTeleportDistance * maxTeleportDistance;
-
         Vec3 eyePosition = player.getEyePosition(1);
         Vec3 viewVector = player.getViewVector(1);
         Vec3 targetPosition = eyePosition.add(viewVector.x * maxTeleportDistance, viewVector.y * maxTeleportDistance, viewVector.z * maxTeleportDistance);
         BlockHitResult targetBlockHit = player.level().clip(new ClipContext(eyePosition, targetPosition, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-
         if (targetBlockHit.getType() == HitResult.Type.BLOCK) {
             double distanceSq = eyePosition.distanceToSqr(targetBlockHit.getLocation());
             if (distanceSq <= maxTeleportDistanceSq) {
@@ -39,16 +36,12 @@ public class TeleportationWand extends ItemMod {
         } else {
             teleportDistance = maxTeleportDistance;
         }
-
         Vec3 teleportPosition = eyePosition.add(viewVector.x * teleportDistance, viewVector.y * teleportDistance, viewVector.z * teleportDistance);
         BlockPos teleportBlockPos = new BlockPos((int) teleportPosition.x, (int) teleportPosition.y, (int) teleportPosition.z);
-
         player.teleportTo(teleportBlockPos.getX() + 0.5, teleportBlockPos.getY() + 1, teleportBlockPos.getZ() + 0.5);
-
         if (!player.isCreative()) {
-            stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+            stack.hurtAndBreak(1, player, player.getUsedItemHand());
         }
-
         return InteractionResult.SUCCESS;
     }
 }

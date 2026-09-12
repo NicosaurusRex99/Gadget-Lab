@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -36,7 +36,7 @@ public class UnstableObsidian extends IceBlock {
     }
 
     public UnstableObsidian() {
-        super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks().setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "unstable_obsidian"))));
+        super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks().setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "unstable_obsidian"))));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
     public UnstableObsidian(BlockBehaviour.Properties blockProperties) {
@@ -49,7 +49,7 @@ public class UnstableObsidian extends IceBlock {
     }
 
     public void tick(BlockState currentState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if ((randomSource.nextInt(3) == 0 || this.fewerNeigboursThan(serverLevel, blockPos, NEIGHBORS_TO_AGE)) && serverLevel.getMaxLocalRawBrightness(blockPos) > 11 - currentState.getValue(AGE) - currentState.getLightBlock() && this.slightlyMelt(currentState, serverLevel, blockPos)) {
+        if ((randomSource.nextInt(3) == 0 || this.fewerNeigboursThan(serverLevel, blockPos, NEIGHBORS_TO_AGE)) && serverLevel.getMaxLocalRawBrightness(blockPos) > 11 - currentState.getValue(AGE) - currentState.getLightEmission(serverLevel, blockPos) && this.slightlyMelt(currentState, serverLevel, blockPos)) {
             BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
             for(Direction direction : Direction.values()) {
@@ -67,9 +67,10 @@ public class UnstableObsidian extends IceBlock {
     public static BlockState meltsInto() {
         return Blocks.LAVA.defaultBlockState();
     }
-    protected void melt(BlockState blockState, Level level, BlockPos pos, Orientation orientation) {
+
+    protected void melt(BlockState blockState, Level level, BlockPos pos) {
             level.setBlockAndUpdate(pos, meltsInto());
-            level.neighborChanged(pos, meltsInto().getBlock(), orientation);
+            level.neighborChanged(pos, meltsInto().getBlock(), Orientation.random(level.getRandom()));
     }
     private boolean slightlyMelt(BlockState currentState, Level level, BlockPos blockPos) {
         int age = currentState.getValue(AGE);
@@ -111,7 +112,7 @@ public class UnstableObsidian extends IceBlock {
         builder.add(AGE);
     }
 
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean includeData) {
         return ItemStack.EMPTY;
     }
 }

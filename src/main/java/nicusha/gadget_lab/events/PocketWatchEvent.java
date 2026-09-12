@@ -1,74 +1,53 @@
 package nicusha.gadget_lab.events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
-public class PocketWatchEvent{
+public class PocketWatchEvent {
 
     @SubscribeEvent
-    static  void renderGameOverlayEvent(RenderGuiLayerEvent.Post event) {
+    public static void renderGameOverlayEvent(RenderGuiLayerEvent.Post event) {
+        if (!event.getName().equals(VanillaGuiLayers.HOTBAR)) {
+            return;
+        }
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
-        if (mc.player == null)
+        if (player == null || mc.level == null) {
             return;
-        int windowWidth = mc.getWindow().getGuiScaledWidth();
-        int yLocation = 10;
-        int xLocation = windowWidth / 2;
-        int textColor = 0xFFFF00;
-
-        if (mc.player.getInventory().contains(new ItemStack(ItemRegistry.pocket_watch.asItem()))) {
-            if (isDaytime(mc.level)) {
-                textColor = 0xFFFF00;
-            } else {
-                textColor = 0x04D8F9;
-            }
-
-            event.getGuiGraphics().drawCenteredString(mc.font, time(mc.level), xLocation, yLocation, textColor);
+        }
+        boolean hasWatch = player.getInventory().contains(stack -> stack.is(ItemRegistry.pocket_watch.get()));
+        if (hasWatch) {
+            String timeText = getTimeString(mc.level);
+            int textColor = isDaytime(mc.level) ? 0xFFFFFF00 : 0xFF04D8F9;
+            GuiGraphicsExtractor guiGraphics = event.getGuiGraphics();
+            int windowWidth = mc.getWindow().getGuiScaledWidth();
+            int textWidth = mc.font.width(timeText);
+            int xLocation = (windowWidth / 2) - (textWidth / 2);
+            int yLocation = 10;
+            guiGraphics.text(mc.font, timeText, xLocation, yLocation, textColor, true);
         }
     }
+
     private static boolean isDaytime(Level level) {
-        long time = level.getDayTime() % 24000;
+        long time = level.getDefaultClockTime() % 24000;
         return time >= 0 && time < 12000;
     }
-    private static String time(Level level) {
-        long time;
 
-        if (level.getDayTime() > 24000)
-            time = level.getDayTime() - 24000 * (int) (level.getDayTime() / 24000);
-        else
-            time = level.getDayTime();
-
-        int hour, minute;
-
-        if ((((int) time / 1000) + 6) > 23)
-            hour = (((int) time / 1000) + 6) - 24;
-        else
-            hour = (((int) time / 1000) + 6);
-
-        if (((time * 60) / 1000) > 60)
-            minute = (int) ((time * 60) / 1000) - (60 * ((int) time / 1000));
-        else
-            minute = (int) ((time * 60) / 1000);
-
-        String period;
-        if (hour >= 12) {
-            period = "PM";
-            if (hour > 12) {
-                hour -= 12;
-            }
-        } else {
-            period = "AM";
-            if (hour == 0) {
-                hour = 12;
-            }
+    private static String getTimeString(Level level) {
+        long time = level.getDefaultClockTime() % 24000;
+        int hour = (int) ((time / 1000) + 6) % 24;
+        int minute = (int) ((time % 1000) * 60 / 1000);
+        String period = hour >= 12 ? "PM" : "AM";
+        int displayHour = hour % 12;
+        if (displayHour == 0) {
+            displayHour = 12;
         }
-
-        return hour + ":" + String.format("%02d", minute) + " " + period;
+        return String.format("%d:%02d %s", displayHour, minute, period);
     }
-
 }

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "minecraft:red_wool",
     "B": "minecraft:basalt"
@@ -11,7 +10,6 @@
     "BBB"
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:pedestal"
   }
 }

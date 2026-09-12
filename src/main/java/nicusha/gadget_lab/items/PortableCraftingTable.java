@@ -3,7 +3,7 @@ package nicusha.gadget_lab.items;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
@@ -14,7 +14,7 @@ import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class PortableCraftingTable extends ItemMod {
     public PortableCraftingTable() {
-        super(new Properties().stacksTo(1).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "portable_crafting_table"))));
+        super(new Properties().stacksTo(1).setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MODID, "portable_crafting_table"))));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PortableCraftingTable extends ItemMod {
                             return true;
                         }
                     };
-                }, this.getName()));
+                }, this.getName(this.getDefaultInstance())));
                 level.playSound(null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0f, 1.0f);
             }
             return InteractionResult.FAIL;

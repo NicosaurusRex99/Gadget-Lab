@@ -1,8 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
-    "#": "minecraft:chain",
+    "#": "minecraft:iron_chain",
     "H": "minecraft:heart_of_the_sea"
   },
   "pattern": [
@@ -11,7 +10,6 @@
     " H "
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:lucky_amulet"
   }
 }

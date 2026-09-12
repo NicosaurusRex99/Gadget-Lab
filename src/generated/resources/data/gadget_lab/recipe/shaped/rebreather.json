@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "C": "minecraft:charcoal",
     "W": "minecraft:white_wool"
@@ -10,7 +9,6 @@
     "CWC"
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:rebreather"
   }
 }

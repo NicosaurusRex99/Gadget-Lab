@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "gadget_lab:item/light_gray"
+    "model": "gadget_lab:block/light_gray"
   }
 }

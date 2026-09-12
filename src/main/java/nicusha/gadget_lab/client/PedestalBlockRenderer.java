@@ -1,36 +1,58 @@
 package nicusha.gadget_lab.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
+import com.mojang.math.Axis;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.phys.Vec3;
 import nicusha.gadget_lab.block_entities.PedestalBlockEntity;
 
-public class PedestalBlockRenderer<T extends BlockEntity> implements BlockEntityRenderer<T> {
-    private final TextureManager textureManager;
+public class PedestalBlockRenderer implements BlockEntityRenderer<PedestalBlockEntity, PedestalBlockRenderer.PedestalRenderState> {
+    private final ItemModelResolver itemModelResolver;
 
     public PedestalBlockRenderer(BlockEntityRendererProvider.Context context) {
-        this.textureManager = context.getEntityRenderer().textureManager;
+        this.itemModelResolver = context.itemModelResolver();
+    }
+
+    public static class PedestalRenderState extends BlockEntityRenderState {
+        public final ItemStackRenderState itemRenderState = new ItemStackRenderState();
+        public float gameTime;
     }
 
     @Override
-    public void render(T tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        ItemStack itemStack = ((PedestalBlockEntity) tileEntity).getItem();
-        if (!itemStack.isEmpty()) {
-            matrixStack.pushPose();
-            matrixStack.translate(0.5, 1.0, 0.5);
+    public PedestalRenderState createRenderState() {
+        return new PedestalRenderState();
+    }
 
-            renderItem(itemStack, matrixStack, buffer, combinedLight, combinedOverlay, tileEntity);
-
-            matrixStack.popPose();
+    @Override
+    public void extractRenderState(PedestalBlockEntity blockEntity, PedestalRenderState state, float partialTicks, Vec3 cameraPosition, ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
+        if (!blockEntity.getItem().isEmpty() && blockEntity.getLevel() != null) {
+            this.itemModelResolver.updateForTopItem(state.itemRenderState, blockEntity.getItem(), ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
+            state.lightCoords = blockEntity.getLevel().getLightEmission(blockEntity.getBlockPos().above());
+            state.gameTime = blockEntity.getLevel().getGameTime() + partialTicks;
+        } else {
+            state.itemRenderState.clear();
         }
     }
 
-    private void renderItem(ItemStack itemStack, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BlockEntity blockEntity) {
-        Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemDisplayContext.GROUND, combinedLight, combinedOverlay, matrixStack, buffer, blockEntity.getLevel(), 0);
+    @Override
+    public void submit(PedestalRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        if (!state.itemRenderState.isEmpty()) {
+            poseStack.pushPose();
+            poseStack.translate(0.5, 1.2, 0.5);
+            poseStack.mulPose(Axis.YP.rotationDegrees(state.gameTime * 2.0F));
+            poseStack.scale(0.65F, 0.65F, 0.65F);
+            state.itemRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+            poseStack.popPose();
+        }
     }
 }

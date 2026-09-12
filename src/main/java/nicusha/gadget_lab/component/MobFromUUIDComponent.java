@@ -16,7 +16,7 @@ public record MobFromUUIDComponent(Optional<UUID> uuid, Optional<Component> name
     public static final Codec<MobFromUUIDComponent> ENTITY_ID_COMPONENT_CODEC = RecordCodecBuilder.create((instance) ->
             instance.group(
                     Codec.STRING.optionalFieldOf("uuid").forGetter((MobFromUUIDComponent c) -> c.uuid().map(UUID::toString)),
-                    ComponentSerialization.FLAT_CODEC.optionalFieldOf("name").forGetter(MobFromUUIDComponent::name)
+                    ComponentSerialization.CODEC.optionalFieldOf("name").forGetter(MobFromUUIDComponent::name)
             ).apply(instance, (Optional<String> uuid, Optional<Component> name) ->
                     new MobFromUUIDComponent(uuid.map(UUID::fromString), name)
             ));

@@ -8,7 +8,11 @@
           "Name": "gadget_lab:quicksand"
         }
       },
-      "rules": []
+      "rules": [],
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "gadget_lab:quicksand"
+      }
     },
     "target": {
       "type": "minecraft:matching_blocks",

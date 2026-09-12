@@ -2,10 +2,13 @@ package nicusha.gadget_lab;
 
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import nicusha.gadget_lab.events.*;
 import nicusha.gadget_lab.registry.*;
 import org.slf4j.Logger;
@@ -16,8 +19,7 @@ public class GadgetLab
     public static final String MODID = "gadget_lab";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public GadgetLab(IEventBus bus)
-    {
+    public GadgetLab(IEventBus bus, ModContainer container) {
         bus.addListener(this::common);
         bus.addListener(this::client);
 
@@ -31,6 +33,7 @@ public class GadgetLab
         SoundRegistry.SOUNDS.register(bus);
 
         bus.addListener(this::addCreative);
+        NeoForge.EVENT_BUS.register(this);
         bus.addListener(EntityRegistry::registerRenderers);
 
     }
@@ -50,5 +53,9 @@ public class GadgetLab
             for (var regObj : ItemRegistry.ITEMS.getEntries()) {
                 event.accept(regObj.get());
             }
+    }
+
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
     }
 }

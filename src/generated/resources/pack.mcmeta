@@ -1,10 +1,13 @@
 {
   "pack": {
     "description": "Resources for Gadget Lab",
-    "pack_format": 61,
-    "supported_formats": [
-      0,
-      2147483647
+    "max_format": [
+      88,
+      512
+    ],
+    "min_format": [
+      88,
+      512
     ]
   }
 }

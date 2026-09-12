@@ -6,11 +6,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -31,41 +32,40 @@ public class CraftingGen extends RecipeProvider {
     protected void buildRecipes() {
         smelting(BlockRegistry.quicksand, Blocks.SAND, 0.2f, 200);
         shaped(ItemRegistry.enigmatic_hold.get(), 1, new String[]{"#G#","OSO","#G#"},'#', Items.IRON_BARS,'G', Items.GHAST_TEAR, 'O', Items.GLOWSTONE_DUST, 'S', Items.STONE_BUTTON);
-        shaped(ItemRegistry.gravity_boots.get(), 1, new String[]{"#S#","#P#"},'#', Items.MAGENTA_WOOL,'S', Items.SLIME_BLOCK, 'P', Items.PISTON);
+        shaped(ItemRegistry.gravity_boots.get(), 1, new String[]{"#S#","#P#"},'#', Items.WOOL.magenta(),'S', Items.SLIME_BLOCK, 'P', Items.PISTON);
         shaped(ItemRegistry.herbicide_spray.get(), 1, new String[]{"#","R", "B"},'#', Items.TRIPWIRE_HOOK,'R', Items.ROTTEN_FLESH, 'B', Items.BUCKET);
         shaped(BlockRegistry.launch_pad.get(), 8, new String[]{"ISI", "RPR", "ICI"},'I', Items.IRON_INGOT,'S', Items.SLIME_BLOCK, 'R', Items.REDSTONE, 'P', Items.STICKY_PISTON, 'C', Items.COMPARATOR);
-        shaped(ItemRegistry.lucky_amulet.get(), 1, new String[]{"# #"," # "," H "},'#', Items.CHAIN,'H', Items.HEART_OF_THE_SEA);
-        shaped(ItemRegistry.magnetic_glove.get(), 1, new String[]{"#I ","iii"," iB"},'#', Items.RED_DYE,'I', Items.IRON_NUGGET, 'i', Items.IRON_INGOT, 'B', Items.BLUE_DYE);
-        shaped(BlockRegistry.pedestal.get(), 1, new String[]{" # ", " B ", "BBB"},'#', Items.RED_WOOL,'B', Items.BASALT);
+        shaped(ItemRegistry.lucky_amulet.get(), 1, new String[]{"# #"," # "," H "},'#', Items.IRON_CHAIN,'H', Items.HEART_OF_THE_SEA);
+        shaped(ItemRegistry.magnetic_glove.get(), 1, new String[]{"#I ","iii"," iB"},'#', Items.DYE.red(),'I', Items.IRON_NUGGET, 'i', Items.IRON_INGOT, 'B', Items.DYE.blue());
+        shaped(BlockRegistry.pedestal.get(), 1, new String[]{" # ", " B ", "BBB"},'#', Items.WOOL.red(),'B', Items.BASALT);
         shaped(ItemRegistry.portable_crafting_table.get(), 1, new String[]{" # ","#C#"," # "},'#', ItemTags.PLANKS,'C', Items.CRAFTING_TABLE);
-        shaped(ItemRegistry.rebreather.get(), 1, new String[]{" C ","CWC"},'C', Items.CHARCOAL,'W', Items.WHITE_WOOL);
-        shaped(ItemRegistry.smoke_bomb.get(), 3, new String[]{"#S#","#C#","###"},'#', Items.GREEN_TERRACOTTA,'S', Items.STONE_PRESSURE_PLATE, 'C', Items.CAMPFIRE);
+        shaped(ItemRegistry.rebreather.get(), 1, new String[]{" C ","CWC"},'C', Items.CHARCOAL,'W', Items.WOOL.white());
+        shaped(ItemRegistry.smoke_bomb.get(), 3, new String[]{"#S#","#C#","###"},'#', Items.DYED_TERRACOTTA.green(),'S', Items.STONE_PRESSURE_PLATE, 'C', Items.CAMPFIRE);
         shaped(ItemRegistry.teleportation_wand.get(), 1, new String[]{" #E"," /#","/  "},'#', Items.ENDER_PEARL,'E', Items.ENDER_EYE, '/', Items.BLAZE_ROD);
-        shapeless(BlockRegistry.black.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.BLACK_DYE);
-        shapeless(BlockRegistry.blue.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.BLUE_DYE);
-        shapeless(BlockRegistry.brown.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.BROWN_DYE);
-        shapeless(BlockRegistry.cyan.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.CYAN_DYE);
-        shapeless(BlockRegistry.gray.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.GRAY_DYE);
-        shapeless(BlockRegistry.green.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.GREEN_DYE);
-        shapeless(BlockRegistry.light_blue.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.LIGHT_BLUE_DYE);
-        shapeless(BlockRegistry.light_gray.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.LIGHT_GRAY_DYE);
-        shapeless(BlockRegistry.light_green.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.LIME_DYE);
-        shapeless(BlockRegistry.magenta.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.MAGENTA_DYE);
-        shapeless(BlockRegistry.orange.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.ORANGE_DYE);
-        shapeless(BlockRegistry.pink.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.PINK_DYE);
-        shapeless(BlockRegistry.purple.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.PURPLE_DYE);
-        shapeless(BlockRegistry.red.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.RED_DYE);
-        shapeless(BlockRegistry.white.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.WHITE_DYE);
-        shapeless(BlockRegistry.yellow.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.YELLOW_DYE);
+        shapeless(BlockRegistry.black.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.black());
+        shapeless(BlockRegistry.blue.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.blue());
+        shapeless(BlockRegistry.brown.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.brown());
+        shapeless(BlockRegistry.cyan.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.cyan());
+        shapeless(BlockRegistry.gray.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.gray());
+        shapeless(BlockRegistry.green.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.green());
+        shapeless(BlockRegistry.light_blue.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.lightBlue());
+        shapeless(BlockRegistry.light_gray.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.lightGray());
+        shapeless(BlockRegistry.light_green.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.lime());
+        shapeless(BlockRegistry.magenta.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.magenta());
+        shapeless(BlockRegistry.orange.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.orange());
+        shapeless(BlockRegistry.pink.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.pink());
+        shapeless(BlockRegistry.purple.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.purple());
+        shapeless(BlockRegistry.red.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.red());
+        shapeless(BlockRegistry.white.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.white());
+        shapeless(BlockRegistry.yellow.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.yellow());
         shapeless(ItemRegistry.invisibility_cloak.get(), 1, Items.FERMENTED_SPIDER_EYE, Items.GOLDEN_CARROT, Items.LEATHER_CHESTPLATE, Items.GLASS_BOTTLE);
-        shapeless(ItemRegistry.pocket_watch.get(), 1, Items.CHAIN, Items.CLOCK);
+        shapeless(ItemRegistry.pocket_watch.get(), 1, Items.IRON_CHAIN, Items.CLOCK);
     }
 
     protected ResourceKey<Recipe<?>> createRecipeKey(String name) {
-        return ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, name));
+        return ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(GadgetLab.MODID, name));
     }
 
-    // Shaped Recipe Template
     protected final void shaped(ItemLike result, int count, String[] pattern, Object... keys) {
         ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(itemGetter, RecipeCategory.MISC, result, count);
         for (String line : pattern) {
@@ -95,8 +95,6 @@ public class CraftingGen extends RecipeProvider {
         builder.save(this.output, createRecipeKey("shaped/" + BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()));
     }
 
-
-    // Shapeless Recipe Template
     protected final void shapeless(ItemLike result, int count, Object... ingredients) {
         ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(itemGetter, RecipeCategory.MISC, result, count);
         for (Object ingredient : ingredients) {
@@ -136,9 +134,8 @@ public class CraftingGen extends RecipeProvider {
         builder.save(this.output, createRecipeKey("shapeless/" + BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()));
     }
 
-    // Smelting Recipe Template
     protected final void smelting(ItemLike input, ItemLike result, float experience, int cookingTime) {
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, result, experience, cookingTime).unlockedBy("has_item", has(input)).save(this.output, createRecipeKey("smelting/" + BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, CookingBookCategory.MISC, result, experience, cookingTime).unlockedBy("has_item", has(input)).save(this.output, createRecipeKey("smelting/" + BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()));
     }
 
 }

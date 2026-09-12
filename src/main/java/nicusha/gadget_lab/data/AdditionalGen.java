@@ -1,68 +1,44 @@
 package nicusha.gadget_lab.data;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.registry.ItemRegistry;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class AdditionalGen implements DataProvider {
-    private PackOutput packOutput;
+    private final PackOutput packOutput;
 
     public AdditionalGen(PackOutput packOutput) {
-        super();
         this.packOutput = packOutput;
     }
 
-    private void generateItemJson(ResourceLocation itemId) {
+    private CompletableFuture<?> generateItemJson(CachedOutput cachedOutput, Identifier itemId, boolean isBlock) {
         JsonObject root = new JsonObject();
-
         JsonObject modelObject = new JsonObject();
         modelObject.addProperty("type", "minecraft:model");
-        modelObject.addProperty("model", GadgetLab.MODID + ":" + (itemId.getPath().startsWith("block/") ? "block/" : "item/") + itemId.getPath());
+        String modelPrefix = isBlock ? "block/" : "item/";
+        modelObject.addProperty("model", GadgetLab.MODID + ":" + modelPrefix + itemId.getPath());
         root.add("model", modelObject);
-
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonContent = gson.toJson(root);
-
-        Path path = getItemModelPath(itemId);
-        Path parentDir = path.getParent();
-        if (!Files.exists(parentDir)) {
-            try {
-                Files.createDirectories(parentDir);
-            } catch (IOException e) {
-                return;
-            }
-        }
-
-        try {
-            Files.write(path, jsonContent.toString().getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return DataProvider.saveStable(cachedOutput, root, getItemModelPath(itemId));
     }
 
-    private Path getItemModelPath(ResourceLocation itemId) {
-        return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve(GadgetLab.MODID)
-                .resolve("items")
-                .resolve(itemId.getPath() + ".json");
+    private Path getItemModelPath(Identifier itemId) {
+        return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(GadgetLab.MODID).resolve("items").resolve(itemId.getPath() + ".json");
     }
 
-    private void generateEquipmentJson(String equipmentId) {
+    private CompletableFuture<?> generateEquipmentJson(CachedOutput cachedOutput, String equipmentId) {
         JsonObject root = new JsonObject();
         JsonObject layers = new JsonObject();
         JsonArray humanoidLayerArray = new JsonArray();
@@ -76,42 +52,27 @@ public class AdditionalGen implements DataProvider {
         humanoidLeggingsLayerArray.add(humanoidLeggingsLayer);
         layers.add("humanoid_leggings", humanoidLeggingsLayerArray);
         root.add("layers", layers);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonContent = gson.toJson(root);
-        Path path = getEquipmentModelPath(equipmentId);
-        Path parentDir = path.getParent();
-        if (!Files.exists(parentDir)) {
-            try {
-                Files.createDirectories(parentDir);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-        }
-        try {
-            Files.write(path, jsonContent.toString().getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return DataProvider.saveStable(cachedOutput, root, getEquipmentModelPath(equipmentId));
     }
 
     private Path getEquipmentModelPath(String equipmentId) {
-        return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve(GadgetLab.MODID)
-                .resolve("equipment")
-                .resolve(equipmentId + ".json");
+        return packOutput.getOutputFolder(PackOutput.Target.RESOURCE_PACK).resolve(GadgetLab.MODID).resolve("equipment").resolve(equipmentId + ".json");
     }
 
     @Override
     public CompletableFuture<?> run(CachedOutput cachedOutput) {
+        List<CompletableFuture<?>> futures = new ArrayList<>();
         for (var regObj : ItemRegistry.ITEMS.getEntries()) {
-            generateItemJson(regObj.getId());
-        }
+            Item item = regObj.get();
+            boolean isBlock = Block.byItem(item) != Blocks.AIR;
 
-        generateEquipmentJson("gravity_boots");
-        generateEquipmentJson("rebreather");
-        generateEquipmentJson("invisibility_cloak");
-        return null;
+            futures.add(generateItemJson(cachedOutput, regObj.getId(), isBlock));
+        }
+        futures.add(generateEquipmentJson(cachedOutput, "gravity_boots"));
+        futures.add(generateEquipmentJson(cachedOutput, "rebreather"));
+        futures.add(generateEquipmentJson(cachedOutput, "invisibility_cloak"));
+
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
     @Override

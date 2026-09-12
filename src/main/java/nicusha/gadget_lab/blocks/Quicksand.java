@@ -4,8 +4,8 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.*;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
@@ -17,26 +17,33 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
-import nicusha.gadget_lab.GadgetLab;
 
 import static nicusha.gadget_lab.GadgetLab.MODID;
-
 
 public class Quicksand extends FallingBlock {
     public static final MapCodec<Quicksand> CODEC = simpleCodec(Quicksand::new);
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.9F, 1.0D);
 
+    public static final TagKey<EntityType<?>> WALK_ON_QUICKSAND_TAG = TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MODID, "entity_walk_on_quicksand"));
+
     public MapCodec<Quicksand> codec() {
         return CODEC;
     }
 
-    public Quicksand() {
-        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "quicksand"))));
+    @Override
+    public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return 0;
     }
+
+    public Quicksand() {
+        super(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND).setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "quicksand"))));
+    }
+
     public Quicksand(Properties properties) {
         super(properties);
     }
@@ -45,14 +52,16 @@ public class Quicksand extends FallingBlock {
         return newState.is(this) || super.skipRendering(currentState, newState, direction);
     }
 
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
+    @Override
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (!(entity instanceof LivingEntity) || level.getBlockState(entity.blockPosition().below()).is(this)) {
             entity.makeStuckInBlock(state, new Vec3((double)0.9F, 1.5D, (double)0.9F));
-            if (level.isClientSide) {
+            if (level.isClientSide()) {
                 RandomSource randomSource = level.getRandom();
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
                 if (flag && randomSource.nextBoolean()) {
@@ -60,18 +69,16 @@ public class Quicksand extends FallingBlock {
                 }
             }
         }
-
-        if (!level.isClientSide) {
-            if (entity.isOnFire() && (level.getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || entity instanceof Player) && entity.mayInteract((ServerLevel) level, pos)) {
+        if (!level.isClientSide()) {
+            if (entity.isOnFire() && (level.getServer().getGameRules().get(GameRules.MOB_GRIEFING) || entity instanceof Player) && entity.mayInteract((ServerLevel) level, pos)) {
                 level.destroyBlock(pos, false);
             }
-
             entity.setSharedFlagOnFire(false);
         }
-
     }
 
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float distance) {
+    @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double distance) {
         if (!((double)distance < 4.0D) && entity instanceof LivingEntity livingEntity) {
             LivingEntity.Fallsounds fallSounds = livingEntity.getFallSounds();
             SoundEvent soundEvent = (double)distance < 7.0D ? fallSounds.small() : fallSounds.big();
@@ -93,18 +100,16 @@ public class Quicksand extends FallingBlock {
         return super.getCollisionShape(state, blockGetter, pos, context);
     }
 
-
     public VoxelShape getVisualShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
     }
 
     public static boolean canEntityWalkOnQuicksand(Entity entity) {
-        return !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GadgetLab.MODID, "entity_walk_on_quicksand")));
+        return !entity.getType().builtInRegistryHolder().is(WALK_ON_QUICKSAND_TAG);
     }
 
     @Override
     protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return true;
     }
-
 }

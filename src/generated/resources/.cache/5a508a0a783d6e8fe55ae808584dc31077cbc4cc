@@ -1,0 +1,9 @@
+// 26.2	2026-09-12T18:08:54.8317136	Tags for minecraft:item mod id gadget_lab
+bfa4c54758c60fd358d5002e2d34c0bd174f6ce1 data/curious/tags/item/charm.json
+5861e1884c37a633a6432f09ec11e2e49beb3cb0 data/curious/tags/item/hands.json
+4a498a6ab62e110c4fe303fdecc25a5f360b63a6 data/curious/tags/item/necklace.json
+e74e1d841ff4a02b8047ddbe9d71ae838a363282 data/gadget_lab/tags/item/air_repair.json
+23f2a2575fd939fdee9ba4c1d7142d3b648c76b8 data/gadget_lab/tags/item/slime_ball_repair.json
+d28edf74e5e9dd9b4fde2c1d5a1e909cca78b63b data/minecraft/tags/item/enchantable/foot_armor.json
+0c9c736a62847ad2a7817a9a2083a34737298d3d data/minecraft/tags/item/sand.json
+d28edf74e5e9dd9b4fde2c1d5a1e909cca78b63b data/minecraft/tags/item/trimmable_armor.json

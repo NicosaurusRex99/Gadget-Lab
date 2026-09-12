@@ -1,12 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
-    "minecraft:chain",
+    "minecraft:iron_chain",
     "minecraft:clock"
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:pocket_watch"
   }
 }

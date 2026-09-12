@@ -2,9 +2,8 @@ package nicusha.gadget_lab.items;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.*;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,7 +18,7 @@ import static nicusha.gadget_lab.GadgetLab.MODID;
 @EventBusSubscriber(modid = GadgetLab.MODID)
 public class LuckyAmulet extends ItemMod {
     public LuckyAmulet() {
-        super(new Item.Properties().durability(500).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "lucky_amulet"))));
+        super(new Item.Properties().durability(500).setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MODID, "lucky_amulet"))));
     }
 
     @SubscribeEvent
@@ -31,7 +30,7 @@ public class LuckyAmulet extends ItemMod {
                 if (!player.hasEffect(MobEffects.LUCK)) {
                     MobEffectInstance fortuneEffect = new MobEffectInstance(MobEffects.LUCK, 120, 2, false, false, false);
                     player.addEffect(fortuneEffect);
-                    fortuneAmulet.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                    fortuneAmulet.hurtAndBreak(1, player, player.getUsedItemHand());
                 }
             }
         }

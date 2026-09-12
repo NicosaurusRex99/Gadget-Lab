@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "minecraft:red_dye",
     "B": "minecraft:blue_dye",
@@ -13,7 +12,6 @@
     " iB"
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:magnetic_glove"
   }
 }

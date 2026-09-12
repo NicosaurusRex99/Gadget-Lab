@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "minecraft:magenta_wool",
     "P": "minecraft:piston",
@@ -11,7 +10,6 @@
     "#P#"
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:gravity_boots"
   }
 }

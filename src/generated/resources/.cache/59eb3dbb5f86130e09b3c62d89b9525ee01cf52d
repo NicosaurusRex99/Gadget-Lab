@@ -1,0 +1,21 @@
+// 26.2	2026-09-12T18:08:54.8327465	Loot Tables
+fec5259de0bf5528e00cc58295001d8c3710bb6a data/gadget_lab/loot_table/blocks/black.json
+b2e1497e92fd86c72a8b951a3e9ec4a3fcb8bacf data/gadget_lab/loot_table/blocks/blue.json
+17ac8e4cff4a5f439b6f1659492075e657a5ed8e data/gadget_lab/loot_table/blocks/brown.json
+ec68df38bd498c5257b0b241c62c1add73ce1363 data/gadget_lab/loot_table/blocks/cyan.json
+bf1dc4a89e5e289104b1881a4cb6f5ab3c5c0f6f data/gadget_lab/loot_table/blocks/gray.json
+871626d20ac0cb1df72f296536552e38a38ab5b6 data/gadget_lab/loot_table/blocks/green.json
+de806785ae8259fe989961945a45a243c75ad148 data/gadget_lab/loot_table/blocks/launch_pad.json
+ae4599795bbb7cd3a8912614f46ccd1a2bb39404 data/gadget_lab/loot_table/blocks/light_blue.json
+ec0cb56ae99182300b024f082338c11b7f1497ed data/gadget_lab/loot_table/blocks/light_gray.json
+aeeaefa69c89ce2bef878fb983c2bbe395f6e995 data/gadget_lab/loot_table/blocks/light_green.json
+e3606ca36d98e0a104db8c92fcd7a36c877e224b data/gadget_lab/loot_table/blocks/magenta.json
+573bc7dc352069e4b07f7366d0473d439d344987 data/gadget_lab/loot_table/blocks/orange.json
+680c84331ea07c64806d4d82832d5260071eb378 data/gadget_lab/loot_table/blocks/pedestal.json
+bebb394144feda78518e4b07241f04accaaa3621 data/gadget_lab/loot_table/blocks/pink.json
+bdb7076ba9299114fd74117855ec6b86b621656f data/gadget_lab/loot_table/blocks/purple.json
+6d3db21cf860f03c1c290d6905b280cbba2e68f4 data/gadget_lab/loot_table/blocks/quicksand.json
+e9f3f9349a002383bd032e54b41f5580c36aaf52 data/gadget_lab/loot_table/blocks/red.json
+6dd4e34ffe9f3f63e90931b0246d35563a843b13 data/gadget_lab/loot_table/blocks/unstable_obsidian.json
+35dd461412084692b799948e05be2292b97ed37b data/gadget_lab/loot_table/blocks/white.json
+07297fb79f0ce09258dc92f8a737d47115d5d086 data/gadget_lab/loot_table/blocks/yellow.json

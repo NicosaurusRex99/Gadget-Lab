@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "#minecraft:planks",
     "C": "minecraft:crafting_table"
@@ -11,7 +10,6 @@
     " # "
   ],
   "result": {
-    "count": 1,
     "id": "gadget_lab:portable_crafting_table"
   }
 }

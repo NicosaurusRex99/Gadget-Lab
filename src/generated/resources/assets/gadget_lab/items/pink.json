@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "gadget_lab:item/pink"
+    "model": "gadget_lab:block/pink"
   }
 }

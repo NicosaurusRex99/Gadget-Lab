@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "gadget_lab:item/unstable_obsidian"
+    "model": "gadget_lab:block/unstable_obsidian"
   }
 }
