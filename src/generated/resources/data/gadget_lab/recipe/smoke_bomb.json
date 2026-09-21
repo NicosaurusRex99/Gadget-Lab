@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:lime_terracotta",
+    "C": "minecraft:campfire",
+    "S": "minecraft:stone_pressure_plate"
+  },
+  "pattern": [
+    "#S#",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 3,
+    "id": "gadget_lab:smoke_bomb"
+  }
+}

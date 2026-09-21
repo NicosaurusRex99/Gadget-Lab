@@ -26,14 +26,9 @@ import net.minecraft.world.phys.shapes.*;
 import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class Quicksand extends FallingBlock {
-    public static final MapCodec<Quicksand> CODEC = simpleCodec(Quicksand::new);
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double)0.9F, 1.0D);
 
     public static final TagKey<EntityType<?>> WALK_ON_QUICKSAND_TAG = TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MODID, "entity_walk_on_quicksand"));
-
-    public MapCodec<Quicksand> codec() {
-        return CODEC;
-    }
 
     @Override
     public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {

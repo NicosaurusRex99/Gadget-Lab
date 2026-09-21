@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.Level;
 import nicusha.gadget_lab.entities.EntitySmokeBomb;
 import nicusha.gadget_lab.registry.EntityRegistry;
@@ -24,7 +25,7 @@ public class SmokeBomb extends ItemMod {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
-        player.swing(hand, true);
+        player.swing(hand, SwingAnimation.DEFAULT, true);
         if (!level.isClientSide()) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SMOKER_SMOKE, SoundSource.PLAYERS, 0.8F, 0.8F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             EntitySmokeBomb bomb = new EntitySmokeBomb(EntityRegistry.SMOKE_BOMB.get(), level, player);

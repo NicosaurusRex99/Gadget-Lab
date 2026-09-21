@@ -49,7 +49,7 @@ public class PedestalBlockRenderer implements BlockEntityRenderer<PedestalBlockE
         if (!state.itemRenderState.isEmpty()) {
             poseStack.pushPose();
             poseStack.translate(0.5, 1.2, 0.5);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.gameTime * 2.0F));
+            poseStack.rotate(Axis.YP.rotationDegrees(state.gameTime * 2.0F));
             poseStack.scale(0.65F, 0.65F, 0.65F);
             state.itemRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
             poseStack.popPose();

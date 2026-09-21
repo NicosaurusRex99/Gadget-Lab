@@ -31,7 +31,6 @@ import static nicusha.gadget_lab.GadgetLab.MODID;
 public class Pedestal extends BaseEntityBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_ITEM = BooleanProperty.create("has_item");
-    public static final MapCodec<Pedestal> CODEC = simpleCodec(Pedestal::new);
 
     public Pedestal() {
         this(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BASALT).noOcclusion().setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "pedestal"))));
@@ -40,11 +39,6 @@ public class Pedestal extends BaseEntityBlock {
     public Pedestal(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HAS_ITEM, false));
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

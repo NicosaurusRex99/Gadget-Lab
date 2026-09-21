@@ -1,38 +1,23 @@
 {
+  "anvil_cost": 4,
   "description": {
     "translate": "enchantment.gadget_lab.magma_walker"
   },
-  "exclusive_set": "#minecraft:exclusive_set/boots",
-  "supported_items": "#minecraft:enchantable/foot_armor",
-  "weight": 2,
-  "max_level": 2,
-  "min_cost": {
-    "base": 10,
-    "per_level_above_first": 10
-  },
-  "max_cost": {
-    "base": 25,
-    "per_level_above_first": 10
-  },
-  "anvil_cost": 4,
-  "slots": [
-    "feet"
-  ],
   "effects": {
     "minecraft:damage_immunity": [
       {
         "effect": {},
         "requirements": {
-          "condition": "minecraft:damage_source_properties",
+          "type": "minecraft:damage_source_properties",
           "predicate": {
             "tags": [
               {
-                "id": "minecraft:burn_from_stepping",
-                "expected": true
+                "expected": true,
+                "id": "#minecraft:burn_from_stepping"
               },
               {
-                "id": "minecraft:bypasses_invulnerability",
-                "expected": false
+                "expected": false,
+                "id": "#minecraft:bypasses_invulnerability"
               }
             ]
           }
@@ -44,14 +29,17 @@
         "effect": {
           "type": "minecraft:replace_disk",
           "block_state": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "gadget_lab:unstable_obsidian",
-              "Properties": {
-                "age": "0"
-              }
+            "id": "gadget_lab:unstable_obsidian",
+            "properties": {
+              "age": "0"
             }
           },
+          "height": 1.0,
+          "offset": [
+            0,
+            -1,
+            0
+          ],
           "predicate": {
             "type": "minecraft:all_of",
             "predicates": [
@@ -79,32 +67,56 @@
           },
           "radius": {
             "type": "minecraft:clamped",
+            "max": 16.0,
+            "min": 0.0,
             "value": {
               "type": "minecraft:linear",
-              "base": 3,
-              "per_level_above_first": 1
-            },
-            "min": 0,
-            "max": 16
+              "base": 3.0,
+              "per_level_above_first": 1.0
+            }
           },
-          "height": 1,
-          "offset": [
-            0,
-            -1,
-            0
-          ],
           "trigger_game_event": "minecraft:block_place"
         },
         "requirements": {
-          "condition": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "flags": {
-              "is_on_ground": true
+          "type": "minecraft:all_of",
+          "terms": [
+            {
+              "type": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "minecraft:flags": {
+                  "is_on_ground": true
+                }
+              }
+            },
+            {
+              "type": "minecraft:inverted",
+              "term": {
+                "type": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "minecraft:vehicle": {}
+                }
+              }
             }
-          }
+          ]
         }
       }
     ]
-  }
+  },
+  "exclusive_set": "#minecraft:exclusive_set/boots",
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 10
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "feet"
+  ],
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 2
 }

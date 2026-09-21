@@ -62,6 +62,7 @@
   "tooltip.item.gadget_lab.displacement_pad": "Teleports you to a predefined location",
   "tooltip.item.gadget_lab.energy_transmitter": "Wirelessly power machines in a small radius at the cost of power",
   "tooltip.item.gadget_lab.enigmatic_hold": "Holds up-to 10 mobs and places them in the same order they were captured in",
+  "tooltip.item.gadget_lab.enigmatic_hold.full": "Enigmatic Hold is full! (10/10)",
   "tooltip.item.gadget_lab.entity_magnet": "Attracts mobs, toggled via redstone.",
   "tooltip.item.gadget_lab.fishermans_net": "Gathers regular fishing items",
   "tooltip.item.gadget_lab.fortune_amulet": "Gives fortune when in the players inventory",

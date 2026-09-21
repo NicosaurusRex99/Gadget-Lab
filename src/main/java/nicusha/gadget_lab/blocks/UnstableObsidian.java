@@ -25,15 +25,10 @@ import org.jetbrains.annotations.Nullable;
 import static nicusha.gadget_lab.GadgetLab.MODID;
 
 public class UnstableObsidian extends IceBlock {
-    public static final MapCodec<UnstableObsidian> CODEC = simpleCodec(UnstableObsidian::new);
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final int NEIGHBORS_TO_AGE = 4;
     private static final int NEIGHBORS_TO_MELT = 2;
-
-    public MapCodec<UnstableObsidian> codec() {
-        return CODEC;
-    }
 
     public UnstableObsidian() {
         super(Properties.ofFullCopy(Blocks.OBSIDIAN).randomTicks().setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "unstable_obsidian"))));
