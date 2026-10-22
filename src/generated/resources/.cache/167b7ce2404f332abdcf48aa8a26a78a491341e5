@@ -1,4 +1,4 @@
-// 26.3	2026-09-21T17:20:27.2355186	gen additional data
+// 26.3	2026-10-22T13:32:15.2796933	gen additional data
 61929df4a7a36db712645db1ff2829ae6128c1ca assets/gadget_lab/equipment/gravity_boots.json
 69f17adf90bcb48f9649207f1376ef285a242fe7 assets/gadget_lab/equipment/invisibility_cloak.json
 777b6f395ea54e9a3fea5d9a931703feb619a853 assets/gadget_lab/equipment/rebreather.json
@@ -28,6 +28,13 @@ c98aacb8b20451fbf1a52a60c09f5b5018922089 assets/gadget_lab/items/purple.json
 f95c11768e043acd5fdade01a9287b5138119271 assets/gadget_lab/items/quicksand.json
 2a68d212c15c92d56e4a2ec8c756980502061dd3 assets/gadget_lab/items/rebreather.json
 29137cde4eeea94bd99dc1ad41f418ca070af150 assets/gadget_lab/items/red.json
+d3e4cd2f673f5beabb83475e654c3d352f3f1781 assets/gadget_lab/items/reinforced_copper_sword.json
+c0ecd4b6277849b1e362d66c0efe157d00a0f0d5 assets/gadget_lab/items/reinforced_diamond_sword.json
+02b508e36030b33646404c75f85c2e3c3d6dcd97 assets/gadget_lab/items/reinforced_golden_sword.json
+36cca1b6883c80498b4e2e4990746fda673b3760 assets/gadget_lab/items/reinforced_iron_sword.json
+0e44bb3e0aa7bb139ec4146a25b226daf303b71b assets/gadget_lab/items/reinforced_netherite_sword.json
+6b95f75a5c86479caa8ee54ed54baa3f6eb4cc9a assets/gadget_lab/items/reinforced_stone_sword.json
+6f61991c627eb4a0a02f62fdb8dec58b405dc0ba assets/gadget_lab/items/reinforced_wooden_sword.json
 c0d3b5b6dbc4f2770fbded136c5fc7b476f99039 assets/gadget_lab/items/smoke_bomb.json
 78b017bc627d31e5b491a08831588896d5f3905d assets/gadget_lab/items/teleportation_wand.json
 73b77c3aad3726c642c2fc72d9afdcac7ee558c0 assets/gadget_lab/items/unstable_obsidian.json

@@ -49,7 +49,7 @@ public class GadgetLab
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeTabRegistry.CREATIVE_TAB.getKey())
+        if (event.getTabKey() == CreativeTabRegistry.CREATIVE_TAB.key())
             for (var regObj : ItemRegistry.ITEMS.getEntries()) {
                 event.accept(regObj.get());
             }

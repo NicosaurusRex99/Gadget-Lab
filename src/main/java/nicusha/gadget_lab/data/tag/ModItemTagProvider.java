@@ -30,14 +30,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(SLIME_REPAIR).add(Items.SLIME_BALL.builtInRegistryHolder().getKey()).addTag(ItemTags.create(Identifier.fromNamespaceAndPath("c", "slime_balls")));
-        tag(AIR_REPAIR).add(Items.PAPER.builtInRegistryHolder().getKey(), Items.CHARCOAL.builtInRegistryHolder().getKey()).addTag(ItemTags.WOOL);
-        tag(CHARM).add(ItemRegistry.lucky_amulet.getKey(), ItemRegistry.pocket_watch.getKey());
-        tag(HANDS).add(ItemRegistry.magnetic_glove.getKey());
-        tag(NECKLACE).add(ItemRegistry.lucky_amulet.getKey());
-        tag(FOOT_ARMOR).add(ItemRegistry.gravity_boots.getKey());
-        tag(SAND).add(Item.byBlock(BlockRegistry.quicksand.get()).builtInRegistryHolder().getKey());
-        tag(TRIMMABLE_ARMOR).add(ItemRegistry.gravity_boots.getKey());
+        tag(SLIME_REPAIR).add(Items.SLIME_BALL.builtInRegistryHolder().key()).addTag(ItemTags.create(Identifier.fromNamespaceAndPath("c", "slime_balls")));
+        tag(AIR_REPAIR).add(Items.PAPER.builtInRegistryHolder().key(), Items.CHARCOAL.builtInRegistryHolder().key()).addTag(ItemTags.WOOL);
+        tag(CHARM).add(ItemRegistry.lucky_amulet.key(), ItemRegistry.pocket_watch.key());
+        tag(HANDS).add(ItemRegistry.magnetic_glove.key());
+        tag(NECKLACE).add(ItemRegistry.lucky_amulet.key());
+        tag(FOOT_ARMOR).add(ItemRegistry.gravity_boots.key());
+        tag(SAND).add(Item.byBlock(BlockRegistry.quicksand.get()).builtInRegistryHolder().key());
+        tag(TRIMMABLE_ARMOR).add(ItemRegistry.gravity_boots.key());
+        tag(ItemTags.SWORDS).add(ItemRegistry.copper_sword.key(), ItemRegistry.diamond_sword.key(), ItemRegistry.golden_sword.key(), ItemRegistry.iron_sword.key(), ItemRegistry.netherite_sword.key(), ItemRegistry.stone_sword.key(), ItemRegistry.wood_sword.key());
+        tag(ItemTags.MELEE_WEAPON_ENCHANTABLE).add(ItemRegistry.copper_sword.key(), ItemRegistry.diamond_sword.key(), ItemRegistry.golden_sword.key(), ItemRegistry.iron_sword.key(), ItemRegistry.netherite_sword.key(), ItemRegistry.stone_sword.key(), ItemRegistry.wood_sword.key());
+        tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(ItemRegistry.copper_sword.key(), ItemRegistry.diamond_sword.key(), ItemRegistry.golden_sword.key(), ItemRegistry.iron_sword.key(), ItemRegistry.netherite_sword.key(), ItemRegistry.stone_sword.key(), ItemRegistry.wood_sword.key());
+        tag(ItemTags.WEAPON_ENCHANTABLE).add(ItemRegistry.copper_sword.key(), ItemRegistry.diamond_sword.key(), ItemRegistry.golden_sword.key(), ItemRegistry.iron_sword.key(), ItemRegistry.netherite_sword.key(), ItemRegistry.stone_sword.key(), ItemRegistry.wood_sword.key());
+
     }
 
 

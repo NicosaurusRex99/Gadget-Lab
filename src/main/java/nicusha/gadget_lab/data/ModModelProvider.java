@@ -26,7 +26,6 @@ import nicusha.gadget_lab.registry.ItemRegistry;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 import static nicusha.gadget_lab.GadgetLab.MODID;
 

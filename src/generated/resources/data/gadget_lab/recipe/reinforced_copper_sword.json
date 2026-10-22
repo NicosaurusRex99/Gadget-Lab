@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "O": "minecraft:obsidian",
+    "S": "minecraft:stick",
+    "W": "#c:ingots/copper"
+  },
+  "pattern": [
+    " WO",
+    "WOW",
+    "SW "
+  ],
+  "result": {
+    "id": "gadget_lab:reinforced_copper_sword"
+  }
+}

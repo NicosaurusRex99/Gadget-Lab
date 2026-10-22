@@ -38,6 +38,13 @@ public class ModRecipeProvider extends RecipeProvider {
         shaped(ItemRegistry.rebreather.get(), 1, new String[]{" C ","CWC"},'C', Items.CHARCOAL,'W', Items.WOOL.white());
         shaped(ItemRegistry.smoke_bomb.get(), 3, new String[]{"#S#","#C#","###"},'#', Items.DYED_TERRACOTTA.lime(),'S', Items.STONE_PRESSURE_PLATE, 'C', Items.CAMPFIRE);
         shaped(ItemRegistry.teleportation_wand.get(), 1, new String[]{" #E"," /#","/  "},'#', Items.ENDER_PEARL,'E', Items.ENDER_EYE, '/', Items.BLAZE_ROD);
+        shaped(ItemRegistry.wood_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.PLANKS, "O", Blocks.OBSIDIAN, "S", Items.STICK);
+        shaped(ItemRegistry.golden_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/gold")), "O", Blocks.OBSIDIAN, "S", Items.STICK);
+        shaped(ItemRegistry.stone_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.STONE_CRAFTING_MATERIALS, "O", Blocks.OBSIDIAN, "S", Items.STICK);
+        shaped(ItemRegistry.iron_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/iron")), "O", Blocks.OBSIDIAN, "S", Items.STICK);
+        shaped(ItemRegistry.diamond_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.create(Identifier.fromNamespaceAndPath("c", "gems/diamond")), "O", Blocks.OBSIDIAN, "S", Items.STICK);
+        shaped(ItemRegistry.netherite_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/netherite")), "O", Blocks.OBSIDIAN, "S", Items.NETHERITE_SWORD);
+        shaped(ItemRegistry.copper_sword.get(), 1, new String[]{" WO", "WOW", "SW "}, "W", ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/copper")), "O", Blocks.OBSIDIAN, "S", Items.STICK);
 
         shapeless(BlockRegistry.black.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.black());
         shapeless(BlockRegistry.blue.get(), "solid_blocks", 1, ItemTags.STONE_CRAFTING_MATERIALS, Items.DYE.blue());
@@ -79,7 +86,16 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ItemLike firstUnlockItem = null;
         for (int i = 0; i < keys.length; i += 2) {
-            Character c = (Character) keys[i];
+            char c;
+            Object keyObj = keys[i];
+            if (keyObj instanceof Character character) {
+                c = character;
+            } else if (keyObj instanceof String s && !s.isEmpty()) {
+                c = s.charAt(0);
+            } else {
+                throw new IllegalArgumentException("Expected Character or String for recipe key at index " + i);
+            }
+
             Object obj = keys[i + 1];
             if (firstUnlockItem == null && obj instanceof ItemLike il) {
                 firstUnlockItem = il;
