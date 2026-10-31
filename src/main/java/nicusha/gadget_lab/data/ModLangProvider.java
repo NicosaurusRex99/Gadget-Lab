@@ -96,6 +96,8 @@ public class ModLangProvider extends LanguageProvider {
         // Enchantments
         addAuto("enchantment.gadget_lab.magma_walker", "Magma Walker");
         addAuto("enchantment.gadget_lab.magma_walker.desc", "The Magma Walker enchantment temporarily freezes the lava around you and turns it into obsidian");
+        addAuto("enchantment.gadget_lab.lumins", "Lumins");
+        addAuto("enchantment.gadget_lab.lumins.desc", "Places torches at the cost of durability when the light level allows mobs to spawn");
     }
 
     private String generateLocalizedNameFromPath(String path) {

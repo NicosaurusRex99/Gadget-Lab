@@ -1,6 +1,6 @@
+
 package nicusha.gadget_lab.data;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -12,6 +12,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import nicusha.gadget_lab.GadgetLab;
 import nicusha.gadget_lab.data.loot.ModLootGenerator;
+import nicusha.gadget_lab.data.tag.ModEnchantmentTagProvider;
 import nicusha.gadget_lab.data.tag.ModItemTagProvider;
 import nicusha.gadget_lab.data.tag.ModBlockTagProvider;
 
@@ -24,22 +25,23 @@ public class GadgetLabDataGenerator {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent.Client event) {
         PackOutput output = event.getGenerator().getPackOutput();
-        CompletableFuture<HolderLookup.Provider> world = event.getWorldLookupProvider();
-        CompletableFuture<HolderLookup.Provider> reloadable = event.getReloadableLookupProvider();
         DataGenerator generator = event.getGenerator();
-
-        generator.addProvider(true, new ModLangProvider(event.getGenerator().getPackOutput(), "en_us"));
-//        String[] popularLanguages = {"es_es", "fr_fr", "de_de", "zh_cn", "ja_jp", "ru_ru", "hi_in", "ar_sa", "th_th", "tk_ph", "sv_se", "pt_pt", "it_it"};
-//        for (String lang : popularLanguages) {
-//            generator.addProvider(true, new ModLangProvider(event.getGenerator().getPackOutput(), lang));
-//        }
+        CompletableFuture<net.minecraft.core.HolderLookup.Provider> worldLookup = event.getWorldLookupProvider();
+        CompletableFuture<net.minecraft.core.HolderLookup.Provider> reloadableLookup = event.getReloadableLookupProvider();
+        generator.addProvider(true, new ModLangProvider(output, "en_us"));
+        String[] popularLanguages = {"es_es", "es_mx", "fr_fr", "fr_ca", "de_de", "zh_cn", "zh_tw", "ja_jp", "ru_ru", "pt_br", "pt_pt", "it_it", "ko_kr", "pl_pl", "nl_nl", "tr_tr", "uk_ua", "cs_cz", "sv_se", "hu_hu", "fi_fi", "da_dk", "nb_no", "el_gr", "ro_ro", "id_id", "vi_vn", "th_th", "hi_in"};
+        for (String lang : popularLanguages) {
+            generator.addProvider(true, new ModLangProvider(output, lang));
+        }
         event.createProvider(ModModelProvider::new);
         generator.addProvider(true, new ModEquipmentProvider(output));
         event.createBlockAndItemTags(ModBlockTagProvider::new, (packOutput, lookup, blockTags) -> new ModItemTagProvider(packOutput, lookup));
-        event.addProvider(DatapackBuiltinEntriesProvider.forReloadableLayer(output, "Gadget Lab Reloadable", world, reloadable, new RegistrySetBuilder().add(Registries.LOOT_TABLE, new ModLootGenerator()), Set.of(GadgetLab.MODID)));
-
-        generator.addProvider(true, DatapackBuiltinEntriesProvider.forReloadableLayer(output, "Gadget Lab Recipes", world, reloadable, new RegistrySetBuilder().add(RecipeProvider.asBootstrap(ModRecipeProvider::new)), Set.of(GadgetLab.MODID)));
-
-
+        RegistrySetBuilder worldRegistryBuilder = new RegistrySetBuilder().add(Registries.ENCHANTMENT, ModEnchantmentProvider::bootstrap);
+        DatapackBuiltinEntriesProvider worldEntries = DatapackBuiltinEntriesProvider.forWorldLayer(output, "Gadget Lab World Entries", worldLookup, worldRegistryBuilder, Set.of(GadgetLab.MODID));
+        generator.addProvider(true, worldEntries);
+        RegistrySetBuilder reloadableRegistryBuilder = new RegistrySetBuilder().add(Registries.LOOT_TABLE, new ModLootGenerator()).add(RecipeProvider.asBootstrap(ModRecipeProvider::new));
+        DatapackBuiltinEntriesProvider reloadableEntries = DatapackBuiltinEntriesProvider.forReloadableLayer(output, "Gadget Lab Reloadable Entries", worldLookup, reloadableLookup, reloadableRegistryBuilder, Set.of(GadgetLab.MODID));
+        generator.addProvider(true, reloadableEntries);
+        generator.addProvider(true, new ModEnchantmentTagProvider(output, worldEntries.getRegistryProvider()));
     }
 }

@@ -31,6 +31,7 @@ public class GadgetLab
         CreativeTabRegistry.TABS.register(bus);
         DataComponentRegistry.COMPONENTS.register(bus);
         SoundRegistry.SOUNDS.register(bus);
+        LocationEffectRegistry.LOCATION_EFFECTS.register(bus);
 
         bus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.register(this);

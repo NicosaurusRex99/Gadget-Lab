@@ -19,6 +19,8 @@
   "block.gadget_lab.unstable_obsidian": "Unstable Obsidian",
   "block.gadget_lab.white": "White",
   "block.gadget_lab.yellow": "Yellow",
+  "enchantment.gadget_lab.lumins": "Lumins",
+  "enchantment.gadget_lab.lumins.desc": "Places torches at the cost of durability when the light level allows mobs to spawn",
   "enchantment.gadget_lab.magma_walker": "Magma Walker",
   "enchantment.gadget_lab.magma_walker.desc": "The Magma Walker enchantment temporarily freezes the lava around you and turns it into obsidian",
   "entity.gadget_lab.smoke_bomb": "Smoke Bomb",
